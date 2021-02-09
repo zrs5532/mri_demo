@@ -1,0 +1,8 @@
+(sym_lib_table
+  (lib (name SensorDemo-rescue)(type Legacy)(uri ${KIPRJMOD}/SensorDemo-rescue.lib)(options "")(descr ""))
+  (lib (name SensorDemo_connector)(type Legacy)(uri ${KIPRJMOD}/../library/schematic/connector.lib)(options "")(descr ""))
+  (lib (name SensorDemo_discrete)(type Legacy)(uri ${KIPRJMOD}/../library/schematic/discrete.lib)(options "")(descr ""))
+  (lib (name SensorDemo_IC)(type Legacy)(uri ${KIPRJMOD}/../library/schematic/IC.lib)(options "")(descr ""))
+  (lib (name SensorDemo_passive)(type Legacy)(uri ${KIPRJMOD}/../library/schematic/passive.lib)(options "")(descr ""))
+  (lib (name SensorDemo_power_supply)(type Legacy)(uri ${KIPRJMOD}/../library/schematic/power_supply.lib)(options "")(descr ""))
+)

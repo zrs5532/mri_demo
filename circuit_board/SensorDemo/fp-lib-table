@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name SensorDemo_pcb)(type KiCad)(uri ${KIPRJMOD}/../library/pcb.pretty)(options "")(descr ""))
+)
