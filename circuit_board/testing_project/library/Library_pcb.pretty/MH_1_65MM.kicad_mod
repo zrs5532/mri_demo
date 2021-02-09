@@ -1,9 +1,0 @@
-(module MH_1_65MM (layer F.Cu) (tedit 5E150B85)
-  (fp_text reference REF** (at 0 3.81) (layer F.SilkS) hide
-    (effects (font (size 1.016 1.016) (thickness 0.1524)))
-  )
-  (fp_text value MH_1_65MM (at -0.254 5.08) (layer F.Fab) hide
-    (effects (font (size 1.016 1.016) (thickness 0.1524)))
-  )
-  (pad "" np_thru_hole circle (at 0 0) (size 1.65 1.65) (drill 1.65) (layers *.Cu *.Mask))
-)
