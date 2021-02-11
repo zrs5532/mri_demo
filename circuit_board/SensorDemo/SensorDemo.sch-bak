@@ -14,15 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Wire Wire Line
-	5100 3300 5200 3300
-Wire Wire Line
-	5200 3300 5200 3400
-Wire Wire Line
-	5200 3400 5100 3400
-Wire Wire Line
-	5200 3500 5200 3400
-Connection ~ 5200 3400
-Wire Wire Line
 	1150 3500 1150 3650
 Text Label 2800 3750 2    50   ~ 0
 ~CS
@@ -62,22 +53,6 @@ Wire Wire Line
 	1250 3150 1350 3150
 Wire Wire Line
 	1250 3850 1250 3150
-Wire Wire Line
-	4100 3100 4200 3100
-Wire Wire Line
-	4100 3000 4100 3100
-Text Label 4050 3400 0    50   ~ 0
-SDI
-Text Label 4050 3300 0    50   ~ 0
-SCK
-Text Label 4050 3200 0    50   ~ 0
-~CS
-Wire Wire Line
-	4050 3400 4200 3400
-Wire Wire Line
-	4050 3300 4200 3300
-Wire Wire Line
-	4050 3200 4200 3200
 NoConn ~ 3700 900 
 NoConn ~ 2650 1250
 Wire Wire Line
@@ -174,22 +149,6 @@ F 3 "" H 2950 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5100 3200 5200 3200
-Wire Wire Line
-	5200 3200 5200 3300
-Connection ~ 5200 3300
-$Comp
-L SensorDemo_power_supply:GND #PS06
-U 1 1 60225DEB
-P 5200 3550
-F 0 "#PS06" H 5200 3425 50  0001 C CNN
-F 1 "GND" H 5200 3475 50  0001 C CNN
-F 2 "" H 5200 3550 50  0001 C CNN
-F 3 "" H 5200 3550 50  0001 C CNN
-	1    5200 3550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
 	3700 1100 4100 1100
 Wire Wire Line
 	2800 1650 4100 1650
@@ -228,17 +187,6 @@ F 3 "" H 7305 645 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SensorDemo_power_supply:+3V3 #PS03
-U 1 1 6024952C
-P 4100 3000
-F 0 "#PS03" H 4100 2950 50  0001 C CNN
-F 1 "+3V3" H 4000 3100 50  0000 L CNN
-F 2 "" H 4105 2695 50  0001 C CNN
-F 3 "" H 4105 2695 50  0001 C CNN
-	1    4100 3000
-	1    0    0    -1  
-$EndComp
-$Comp
 L SensorDemo_power_supply:+3V3 #PS05
 U 1 1 6024A4DE
 P 1150 3500
@@ -255,8 +203,6 @@ Wire Wire Line
 	7000 3250 7000 3300
 Wire Wire Line
 	7000 3300 6850 3300
-Wire Wire Line
-	5100 3100 5550 3100
 Wire Wire Line
 	5550 3100 5550 3300
 Wire Wire Line
@@ -685,17 +631,6 @@ F 3 "" H 2055 4695 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SensorDemo_IC:MCP4821 U3
-U 1 1 600BDDE0
-P 4650 3250
-F 0 "U3" H 4650 3687 60  0000 C CNN
-F 1 "MCP4821" H 4650 3581 60  0000 C CNN
-F 2 "SensorDemo_pcb:SOIC-8" H 4650 3250 60  0001 C CNN
-F 3 "" H 4650 3250 60  0000 C CNN
-	1    4650 3250
-	1    0    0    -1  
-$EndComp
-$Comp
 L SensorDemo_IC:INA126 U4
 U 1 1 602358E6
 P 6400 3400
@@ -780,4 +715,25 @@ Text Notes 2750 3050 0    50   ~ 0
 include a RX line also
 Text Notes 2750 3250 0    50   ~ 0
 missing Vcap
+Wire Notes Line
+	7100 3350 7100 4000
+Wire Notes Line
+	7100 4000 7500 4000
+Wire Notes Line
+	7500 4000 7500 3350
+Wire Notes Line
+	7500 3350 7100 3350
+Text Notes 6800 4200 0    50   ~ 0
+check INA126 datasheet fig.25\nfor example circuit. check the REF1004
+$Comp
+L SensorDemo_IC:LTC1658 U?
+U 1 1 602576B4
+P 4650 3250
+F 0 "U?" H 4650 3687 60  0000 C CNN
+F 1 "LTC1658" H 4650 3581 60  0000 C CNN
+F 2 "" H 4650 3250 60  0000 C CNN
+F 3 "" H 4650 3250 60  0000 C CNN
+	1    4650 3250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
