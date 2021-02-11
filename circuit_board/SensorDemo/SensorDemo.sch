@@ -245,17 +245,6 @@ F 3 "" H 5850 4000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L SensorDemo_power_supply:GND #PS08
-U 1 1 6026B9E7
-P 9100 4450
-F 0 "#PS08" H 9100 4325 50  0001 C CNN
-F 1 "GND" H 9100 4375 50  0001 C CNN
-F 2 "" H 9100 4450 50  0001 C CNN
-F 3 "" H 9100 4450 50  0001 C CNN
-	1    9100 4450
-	1    0    0    -1  
-$EndComp
-$Comp
 L SensorDemo_passive:POT RV1
 U 1 1 6025EF57
 P 6400 2600
@@ -329,11 +318,7 @@ Wire Wire Line
 Wire Wire Line
 	5600 4750 5800 4750
 Connection ~ 5600 4750
-Text Notes 900  7150 0    50   ~ 0
-let's remove the power switch and the barrel jack,\ninstead, we should use the power line from the USB\nto supply the raw 5V power to the 3.3V LDO.
 NoConn ~ 2400 1300
-Text Notes 1850 -100 0    50   ~ 0
-VCC from a standard USB port is 5V,\nwe should filter it and feed it into a LDO.\nplease check the video I shared and edit\naccordingly.
 Wire Notes Line
 	6100 2300 6100 2800
 Wire Notes Line
@@ -343,9 +328,7 @@ Wire Notes Line
 Wire Notes Line
 	6750 2300 6100 2300
 Text Notes 6800 2650 0    50   ~ 0
-two things we can do:\n1. change the INA to something with\nprogrammable gain\n2. find a surface mount pot.
-Text Notes 7600 4800 0    50   ~ 0
-check INA126 datasheet fig.25\nfor example circuit. check the REF1004
+Let's use a fixed resister here.
 $Comp
 L SensorDemo_IC:LTC1658 U?
 U 1 1 602576B4
@@ -534,11 +517,9 @@ Connection ~ 2750 1500
 Wire Wire Line
 	2750 1500 2450 1500
 Connection ~ 6450 1000
-Wire Wire Line
-	6450 1000 6550 1000
 Connection ~ 6750 1000
 Wire Wire Line
-	6750 1000 7100 1000
+	6750 1000 6900 1000
 Wire Wire Line
 	2750 1500 3500 1500
 Wire Wire Line
@@ -605,15 +586,6 @@ Wire Wire Line
 Connection ~ 6750 1500
 Wire Wire Line
 	6750 1500 7600 1500
-Wire Wire Line
-	6550 850  6550 1000
-Connection ~ 6550 1000
-Wire Wire Line
-	6550 1000 6750 1000
-Text Label 6350 850  0    50   ~ 0
-+3V3
-Wire Wire Line
-	6350 850  6550 850 
 Text Notes 2800 850  0    50   ~ 0
 12.3071 nano ohm
 Wire Wire Line
@@ -623,16 +595,9 @@ Text Label 1000 3650 0    50   ~ 0
 Wire Wire Line
 	1000 3650 1350 3650
 Wire Wire Line
-	2700 2300 2700 2450
-Wire Wire Line
 	2700 2450 2650 2450
 Wire Wire Line
 	2700 3250 2650 3250
-Connection ~ 2700 2450
-Wire Wire Line
-	2900 2300 2700 2300
-Text Label 2900 2300 2    50   ~ 0
-+3V3
 Wire Wire Line
 	2750 2550 2750 3350
 Wire Wire Line
@@ -676,4 +641,82 @@ Wire Wire Line
 Connection ~ 2750 3350
 Wire Wire Line
 	2750 3350 2750 4000
+$Comp
+L SensorDemo_power_supply:+3V3 #PS?
+U 1 1 6025A9BB
+P 6900 900
+F 0 "#PS?" H 6900 850 50  0001 C CNN
+F 1 "+3V3" H 6800 1000 50  0000 L CNN
+F 2 "" H 6905 595 50  0001 C CNN
+F 3 "" H 6905 595 50  0001 C CNN
+	1    6900 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6450 1000 6750 1000
+Wire Wire Line
+	6900 900  6900 1000
+Connection ~ 6900 1000
+Wire Wire Line
+	6900 1000 7100 1000
+$Comp
+L SensorDemo_power_supply:+3V3 #PS?
+U 1 1 60267105
+P 2700 2250
+F 0 "#PS?" H 2700 2200 50  0001 C CNN
+F 1 "+3V3" H 2600 2350 50  0000 L CNN
+F 2 "" H 2705 1945 50  0001 C CNN
+F 3 "" H 2705 1945 50  0001 C CNN
+	1    2700 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 2250 2700 2450
+Connection ~ 2700 2450
+Wire Notes Line
+	1100 2300 1100 2500
+Wire Notes Line
+	1100 2500 1900 2500
+Wire Notes Line
+	1900 2500 1900 2300
+Wire Notes Line
+	1900 2300 1100 2300
+Text Notes 750  2150 0    50   ~ 0
+create a reset circuit,\nyou can refer to the datasheet.
+Text Notes 7600 4800 0    50   ~ 0
+check INA126 datasheet fig.25\nfor example circuit. check the REF1004
+Wire Notes Line
+	4250 4800 4250 5300
+Wire Notes Line
+	4250 5300 3350 5300
+Wire Notes Line
+	3350 5300 3350 4800
+Wire Notes Line
+	3350 4800 4250 4800
+Text Notes 3250 4750 0    50   ~ 0
+do you have ucCTS on uC?\nsame as ucRTS.\nwhat about the TXD line?
+Wire Notes Line
+	4850 4650 4850 4950
+Wire Notes Line
+	4850 4950 5200 4950
+Wire Notes Line
+	5200 4950 5200 4650
+Wire Notes Line
+	5200 4650 4850 4650
+Text Notes 4600 4650 0    50   ~ 0
+copy other 3V3 symbols
+Wire Notes Line
+	4150 3000 4150 3800
+Wire Notes Line
+	4150 3800 2850 3800
+Wire Notes Line
+	2850 3800 2850 3300
+Wire Notes Line
+	2850 3300 3650 3300
+Wire Notes Line
+	3650 3300 3650 3000
+Wire Notes Line
+	3650 3000 4150 3000
+Text Notes 3100 3700 0    50   ~ 0
+use wires to connect them\nwhen close enough.
 $EndSCHEMATC
