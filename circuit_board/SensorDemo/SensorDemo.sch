@@ -13,36 +13,10 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L SensorDemo_power_supply:GND #PS07
-U 1 1 600DBC8F
-P 2050 3850
-F 0 "#PS07" H 2050 3725 50  0001 C CNN
-F 1 "GND" H 2050 3775 50  0001 C CNN
-F 2 "" H 2050 3850 50  0001 C CNN
-F 3 "" H 2050 3850 50  0001 C CNN
-	1    2050 3850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2050 3100 2150 3100
-Wire Wire Line
-	2050 3800 2050 3100
 Wire Wire Line
 	7400 1000 7600 1000
 Wire Wire Line
 	7600 1000 7600 1100
-$Comp
-L SensorDemo_power_supply:GND #PS010
-U 1 1 60222C48
-P 3550 4000
-F 0 "#PS010" H 3550 3875 50  0001 C CNN
-F 1 "GND" H 3550 3925 50  0001 C CNN
-F 2 "" H 3550 4000 50  0001 C CNN
-F 3 "" H 3550 4000 50  0001 C CNN
-	1    3550 4000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7000 3450 7100 3450
 Wire Wire Line
@@ -51,16 +25,8 @@ Wire Wire Line
 	8250 3300 8000 3300
 Wire Wire Line
 	6800 3300 7100 3300
-Wire Wire Line
-	1900 2500 2150 2500
-Text Label 1900 2500 0    50   ~ 0
-sensVal
 Text Label 8250 3300 2    50   ~ 0
 sensVal
-Wire Wire Line
-	7000 3450 7000 3800
-Text Label 3800 3100 2    50   ~ 0
-ucTX
 Wire Wire Line
 	2650 1100 2400 1100
 Wire Wire Line
@@ -234,17 +200,6 @@ F 3 "" H 7600 1250 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L SensorDemo_IC:dsPIC33EP32GP502 U2
-U 1 1 600D29E3
-P 2800 3050
-F 0 "U2" H 2800 3987 60  0000 C CNN
-F 1 "dsPIC33EP32GP502" H 2800 3881 60  0000 C CNN
-F 2 "SensorDemo_pcb:SOIC-28" H 2800 2350 60  0001 C CNN
-F 3 "" H 2800 2350 60  0000 C CNN
-	1    2800 3050
-	1    0    0    -1  
-$EndComp
-$Comp
 L SensorDemo_IC:INA126 U4
 U 1 1 602358E6
 P 7550 3250
@@ -275,36 +230,6 @@ Wire Wire Line
 	5600 4750 5800 4750
 Connection ~ 5600 4750
 NoConn ~ 2400 1300
-$Comp
-L SensorDemo_IC:LTC1658 U?
-U 1 1 602576B4
-P 4950 3650
-F 0 "U?" H 4950 4087 60  0000 C CNN
-F 1 "LTC1658" H 4950 3981 60  0000 C CNN
-F 2 "" H 4950 3650 60  0000 C CNN
-F 3 "" H 4950 3650 60  0000 C CNN
-	1    4950 3650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5450 3950 5450 3800
-Wire Wire Line
-	5450 3800 5400 3800
-$Comp
-L SensorDemo_power_supply:GND PS?
-U 1 1 60286B29
-P 5450 4000
-F 0 "PS?" H 5450 3875 50  0001 C CNN
-F 1 "GND" H 5450 3925 50  0001 C CNN
-F 2 "" H 5450 4000 50  0001 C CNN
-F 3 "" H 5450 4000 50  0001 C CNN
-	1    5450 4000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5650 3600 5400 3600
-Text Label 5650 3600 2    50   ~ 0
-dacVout
 Text Label 6850 3150 0    50   ~ 0
 dacVout
 Wire Wire Line
@@ -520,41 +445,16 @@ Wire Wire Line
 Connection ~ 6750 1500
 Wire Wire Line
 	6750 1500 7600 1500
-Text Notes 2800 850  0    50   ~ 0
+Text Notes 2450 850  0    50   ~ 0
 12.3071 nano ohm
 Wire Wire Line
-	3150 1000 3500 1000
-Text Label 1800 3600 0    50   ~ 0
-+3V3
-Wire Wire Line
-	1800 3600 2150 3600
-Wire Wire Line
-	3500 2400 3450 2400
-Wire Wire Line
-	3500 3200 3450 3200
-Wire Wire Line
-	3550 2500 3550 3300
-Wire Wire Line
-	3450 2500 3550 2500
-Wire Wire Line
-	3500 2400 3500 3200
-Wire Wire Line
-	3800 3100 3450 3100
-Wire Wire Line
-	3800 3000 3450 3000
-Text Label 3800 3000 2    50   ~ 0
-ucRX
+	3150 1000 3250 1000
 Wire Wire Line
 	3500 5350 3850 5350
 Wire Wire Line
 	3500 5450 3850 5450
 Text Label 8250 3150 2    50   ~ 0
 +3V3
-Wire Wire Line
-	3450 3300 3550 3300
-Connection ~ 3550 3300
-Wire Wire Line
-	3550 3300 3550 3950
 $Comp
 L SensorDemo_power_supply:+3V3 #PS?
 U 1 1 6025A9BB
@@ -588,36 +488,6 @@ Wire Wire Line
 	3500 5050 3850 5050
 Text Label 3500 5050 0    50   ~ 0
 ucRX
-Text Label 4250 3700 0    50   ~ 0
-~CS
-Text Label 4250 3600 0    50   ~ 0
-SDI
-Text Label 4250 3500 0    50   ~ 0
-SCK
-Text Label 3800 3500 2    50   ~ 0
-SDI
-Text Label 3800 3600 2    50   ~ 0
-SCK
-Text Label 3800 3700 2    50   ~ 0
-~CS
-Wire Wire Line
-	3450 3600 3800 3600
-Wire Wire Line
-	3900 3500 3900 3600
-Wire Wire Line
-	3900 3600 4500 3600
-Wire Wire Line
-	3450 3500 3900 3500
-Wire Wire Line
-	3800 3600 3800 3550
-Wire Wire Line
-	3800 3550 4200 3550
-Wire Wire Line
-	4200 3550 4200 3500
-Wire Wire Line
-	4200 3500 4500 3500
-Wire Wire Line
-	3450 3700 4500 3700
 $Comp
 L SensorDemo_passive:R R?
 U 1 1 602D3910
@@ -644,8 +514,8 @@ $Comp
 L SensorDemo_passive:C C?
 U 1 1 6030E441
 P 1650 2600
-F 0 "C?" V 1604 2683 50  0000 L CNN
-F 1 ".01uF" V 1695 2683 50  0000 L CNN
+F 0 "C?" V 1650 2450 50  0000 L CNN
+F 1 ".01uF" V 1750 2350 50  0000 L CNN
 F 2 "" H 1688 2450 30  0000 C CNN
 F 3 "" H 1650 2600 60  0000 C CNN
 	1    1650 2600
@@ -658,51 +528,41 @@ Wire Wire Line
 $Comp
 L SensorDemo_IC:REF1933 U?
 U 1 1 6032F828
-P 5300 2600
-F 0 "U?" H 5300 2987 60  0000 C CNN
-F 1 "REF1933" H 5300 2881 60  0000 C CNN
-F 2 "" H 5300 2600 60  0000 C CNN
-F 3 "" H 5300 2600 60  0000 C CNN
-	1    5300 2600
+P 9800 1200
+F 0 "U?" H 9800 1587 60  0000 C CNN
+F 1 "REF1930" H 9800 1481 60  0000 C CNN
+F 2 "" H 9800 1200 60  0000 C CNN
+F 3 "" H 9800 1200 60  0000 C CNN
+	1    9800 1200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6000 2500 5750 2500
+	10500 1100 10250 1100
 Wire Wire Line
-	4600 2700 4850 2700
+	9100 1300 9350 1300
 Wire Wire Line
-	4800 2800 4800 2600
+	9300 1200 9350 1200
 Wire Wire Line
-	4800 2600 4850 2600
-Wire Wire Line
-	4600 2500 4850 2500
+	9100 1100 9350 1100
 $Comp
 L SensorDemo_power_supply:GND PS?
 U 1 1 6034AEB0
-P 4800 2850
-F 0 "PS?" H 4800 2725 50  0001 C CNN
-F 1 "GND" H 4800 2775 50  0001 C CNN
-F 2 "" H 4800 2850 50  0001 C CNN
-F 3 "" H 4800 2850 50  0001 C CNN
-	1    4800 2850
+P 9300 1800
+F 0 "PS?" H 9300 1675 50  0001 C CNN
+F 1 "GND" H 9300 1725 50  0001 C CNN
+F 2 "" H 9300 1800 50  0001 C CNN
+F 3 "" H 9300 1800 50  0001 C CNN
+	1    9300 1800
 	1    0    0    -1  
 $EndComp
-Text Label 4600 2500 0    50   ~ 0
+Text Label 9100 1100 0    50   ~ 0
 Vbias
-Text Label 6000 2500 2    50   ~ 0
+Text Label 10500 1100 2    50   ~ 0
 Vref
-Text Label 4600 2700 0    50   ~ 0
+Text Label 9100 1300 0    50   ~ 0
 ucEN
-Text Label 8250 3450 2    50   ~ 0
-Vbias
 Wire Wire Line
 	8250 3150 8000 3150
-Wire Wire Line
-	8250 3450 8000 3450
-Wire Wire Line
-	5650 3700 5400 3700
-Text Label 5650 3700 2    50   ~ 0
-Vref
 $Comp
 L SensorDemo_passive:R R?
 U 1 1 6038215A
@@ -743,8 +603,6 @@ Wire Wire Line
 	900  2750 1650 2750
 Connection ~ 1650 2750
 Connection ~ 1650 2400
-Wire Wire Line
-	1650 2400 2150 2400
 $Comp
 L SensorDemo_power_supply:+3V3 PS?
 U 1 1 603D7984
@@ -754,50 +612,6 @@ F 1 "+3V3" H 1550 2150 50  0000 L CNN
 F 2 "" H 1655 1745 50  0001 C CNN
 F 3 "" H 1655 1745 50  0001 C CNN
 	1    1650 2050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3500 2150 3500 2400
-Connection ~ 3500 2400
-$Comp
-L SensorDemo_power_supply:+3V3 PS?
-U 1 1 603E1E68
-P 3500 2150
-F 0 "PS?" H 3500 2100 50  0001 C CNN
-F 1 "+3V3" H 3568 2178 50  0000 L CNN
-F 2 "" H 3505 1845 50  0001 C CNN
-F 3 "" H 3505 1845 50  0001 C CNN
-	1    3500 2150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5800 2350 5800 2700
-Wire Wire Line
-	5800 2700 5750 2700
-$Comp
-L SensorDemo_power_supply:+3V3 PS?
-U 1 1 603F36E5
-P 5800 2350
-F 0 "PS?" H 5800 2300 50  0001 C CNN
-F 1 "+3V3" H 5700 2450 50  0000 L CNN
-F 2 "" H 5805 2045 50  0001 C CNN
-F 3 "" H 5805 2045 50  0001 C CNN
-	1    5800 2350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5450 3300 5450 3500
-Wire Wire Line
-	5450 3500 5400 3500
-$Comp
-L SensorDemo_power_supply:+3V3 PS?
-U 1 1 603FE38C
-P 5450 3300
-F 0 "PS?" H 5450 3250 50  0001 C CNN
-F 1 "+3V3" H 5350 3400 50  0000 L CNN
-F 2 "" H 5455 2995 50  0001 C CNN
-F 3 "" H 5455 2995 50  0001 C CNN
-	1    5450 3300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -815,4 +629,271 @@ F 3 "" H 5005 4595 50  0001 C CNN
 	1    5000 4900
 	1    0    0    -1  
 $EndComp
+$Comp
+L SensorDemo_passive:C C?
+U 1 1 6040FB49
+P 9800 1600
+F 0 "C?" V 9754 1683 50  0000 L CNN
+F 1 ".1uF" V 9845 1683 50  0000 L CNN
+F 2 "" H 9838 1450 30  0000 C CNN
+F 3 "" H 9800 1600 60  0000 C CNN
+	1    9800 1600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3450 900  3250 900 
+Wire Wire Line
+	3250 900  3250 1000
+Connection ~ 3250 1000
+Wire Wire Line
+	3250 1000 3500 1000
+Wire Wire Line
+	9300 1200 9300 1450
+Wire Wire Line
+	9800 1450 9300 1450
+Connection ~ 9300 1450
+Wire Wire Line
+	9300 1450 9300 1750
+Wire Wire Line
+	9800 1750 9300 1750
+Connection ~ 9300 1750
+Wire Wire Line
+	9800 1450 10250 1450
+Wire Wire Line
+	10250 1450 10250 1300
+Connection ~ 9800 1450
+Wire Wire Line
+	10250 1450 10250 1750
+Wire Wire Line
+	10250 1750 9800 1750
+Connection ~ 10250 1450
+Connection ~ 9800 1750
+Text Label 8250 3450 2    50   ~ 0
+Vbias
+Wire Wire Line
+	8000 3450 8300 3450
+$Comp
+L SensorDemo_passive:C C?
+U 1 1 604C549A
+P 8300 3600
+F 0 "C?" V 8254 3683 50  0000 L CNN
+F 1 "C" V 8345 3683 50  0000 L CNN
+F 2 "" H 8338 3450 30  0000 C CNN
+F 3 "" H 8300 3600 60  0000 C CNN
+	1    8300 3600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7000 3450 7000 3750
+Wire Wire Line
+	8300 3750 7000 3750
+Connection ~ 7000 3750
+Wire Wire Line
+	7000 3750 7000 3800
+$Comp
+L SensorDemo_power_supply:+3V3 PS?
+U 1 1 60471E04
+P 2400 3400
+F 0 "PS?" H 2400 3350 50  0001 C CNN
+F 1 "+3V3" H 2250 3500 50  0000 L CNN
+F 2 "" H 2405 3095 50  0001 C CNN
+F 3 "" H 2405 3095 50  0001 C CNN
+	1    2400 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 3600 2600 3600
+Wire Wire Line
+	2400 3400 2400 3600
+Connection ~ 2500 3100
+Wire Wire Line
+	2500 2700 2500 3100
+Wire Wire Line
+	2600 2700 2500 2700
+$Comp
+L SensorDemo_power_supply:+3V3 PS?
+U 1 1 603FE38C
+P 5900 3300
+F 0 "PS?" H 5900 3250 50  0001 C CNN
+F 1 "+3V3" H 5800 3400 50  0000 L CNN
+F 2 "" H 5905 2995 50  0001 C CNN
+F 3 "" H 5905 2995 50  0001 C CNN
+	1    5900 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 3500 5850 3500
+Wire Wire Line
+	5900 3300 5900 3500
+$Comp
+L SensorDemo_power_supply:+3V3 PS?
+U 1 1 603E1E68
+P 3950 2150
+F 0 "PS?" H 3950 2100 50  0001 C CNN
+F 1 "+3V3" H 4018 2178 50  0000 L CNN
+F 2 "" H 3955 1845 50  0001 C CNN
+F 3 "" H 3955 1845 50  0001 C CNN
+	1    3950 2150
+	1    0    0    -1  
+$EndComp
+Connection ~ 3950 2400
+Wire Wire Line
+	3950 2150 3950 2400
+Text Label 6100 3700 2    50   ~ 0
+Vref
+Wire Wire Line
+	6100 3700 5850 3700
+Wire Wire Line
+	3900 3700 4950 3700
+Wire Wire Line
+	4650 3500 4950 3500
+Wire Wire Line
+	4650 3550 4650 3500
+Wire Wire Line
+	4250 3550 4650 3550
+Wire Wire Line
+	4250 3600 4250 3550
+Wire Wire Line
+	3900 3500 4350 3500
+Wire Wire Line
+	4350 3600 4950 3600
+Wire Wire Line
+	4350 3500 4350 3600
+Wire Wire Line
+	3900 3600 4250 3600
+Text Label 4250 3700 2    50   ~ 0
+~CS
+Text Label 4250 3600 2    50   ~ 0
+SCK
+Text Label 4250 3500 2    50   ~ 0
+SDI
+Text Label 4700 3500 0    50   ~ 0
+SCK
+Text Label 4700 3600 0    50   ~ 0
+SDI
+Text Label 4700 3700 0    50   ~ 0
+~CS
+Wire Wire Line
+	4000 3300 4000 3950
+Connection ~ 4000 3300
+Wire Wire Line
+	3900 3300 4000 3300
+Text Label 4250 3000 2    50   ~ 0
+ucRX
+Wire Wire Line
+	4250 3000 3900 3000
+Wire Wire Line
+	4250 3100 3900 3100
+Wire Wire Line
+	3950 2400 3950 3200
+Wire Wire Line
+	3900 2500 4000 2500
+Wire Wire Line
+	4000 2500 4000 3300
+Wire Wire Line
+	3950 3200 3900 3200
+Wire Wire Line
+	3950 2400 3900 2400
+Text Label 6100 3600 2    50   ~ 0
+dacVout
+Wire Wire Line
+	6100 3600 5850 3600
+$Comp
+L SensorDemo_power_supply:GND PS?
+U 1 1 60286B29
+P 5900 4000
+F 0 "PS?" H 5900 3875 50  0001 C CNN
+F 1 "GND" H 5900 3925 50  0001 C CNN
+F 2 "" H 5900 4000 50  0001 C CNN
+F 3 "" H 5900 4000 50  0001 C CNN
+	1    5900 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 3800 5850 3800
+Wire Wire Line
+	5900 3950 5900 3800
+$Comp
+L SensorDemo_IC:LTC1658 U?
+U 1 1 602576B4
+P 5400 3650
+F 0 "U?" H 5400 4087 60  0000 C CNN
+F 1 "LTC1658" H 5400 3981 60  0000 C CNN
+F 2 "" H 5400 3650 60  0000 C CNN
+F 3 "" H 5400 3650 60  0000 C CNN
+	1    5400 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_IC:dsPIC33EP32GP502 U2
+U 1 1 600D29E3
+P 3250 3050
+F 0 "U2" H 3250 3987 60  0000 C CNN
+F 1 "dsPIC33EP32GP502" H 3250 3881 60  0000 C CNN
+F 2 "SensorDemo_pcb:SOIC-28" H 3250 2350 60  0001 C CNN
+F 3 "" H 3250 2350 60  0000 C CNN
+	1    3250 3050
+	1    0    0    -1  
+$EndComp
+Text Label 4250 3100 2    50   ~ 0
+ucTX
+Text Label 2350 2500 0    50   ~ 0
+sensVal
+Wire Wire Line
+	2350 2500 2600 2500
+$Comp
+L SensorDemo_power_supply:GND #PS010
+U 1 1 60222C48
+P 4000 4000
+F 0 "#PS010" H 4000 3875 50  0001 C CNN
+F 1 "GND" H 4000 3925 50  0001 C CNN
+F 2 "" H 4000 4000 50  0001 C CNN
+F 3 "" H 4000 4000 50  0001 C CNN
+	1    4000 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 3800 2500 3700
+Wire Wire Line
+	2500 3100 2600 3100
+$Comp
+L SensorDemo_power_supply:GND #PS07
+U 1 1 600DBC8F
+P 2500 3850
+F 0 "#PS07" H 2500 3725 50  0001 C CNN
+F 1 "GND" H 2500 3775 50  0001 C CNN
+F 2 "" H 2500 3850 50  0001 C CNN
+F 3 "" H 2500 3850 50  0001 C CNN
+	1    2500 3850
+	1    0    0    -1  
+$EndComp
+Text Label 2050 2800 0    50   ~ 0
+Vref
+Wire Wire Line
+	2250 2800 2600 2800
+$Comp
+L SensorDemo_passive:C C?
+U 1 1 604FA490
+P 2250 3000
+F 0 "C?" V 2204 3083 50  0000 L CNN
+F 1 "C" V 2295 3083 50  0000 L CNN
+F 2 "" H 2288 2850 30  0000 C CNN
+F 3 "" H 2250 3000 60  0000 C CNN
+	1    2250 3000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2250 2800 2250 2850
+Wire Wire Line
+	2250 3150 2250 3700
+Wire Wire Line
+	2250 3700 2500 3700
+Connection ~ 2500 3700
+Wire Wire Line
+	2500 3700 2500 3100
+Wire Wire Line
+	1650 2400 2600 2400
+Wire Wire Line
+	2050 2800 2250 2800
+Connection ~ 2250 2800
 $EndSCHEMATC
