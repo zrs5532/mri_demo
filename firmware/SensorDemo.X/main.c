@@ -75,20 +75,13 @@ int main(void)
     
     sensVal = 1;
     
-    printf("\n\r5 Second Delay to Calibrate\n\r");
+    printf("\n\r5 Second Delay to Settle\n\r");
     __delay_ms(5000);
-    printf("Calibration complete.\n\r");
+    printf("Settling complete.\n\r");
     
     
     while (1)
-    {       
-//        __delay_us(100);
-//        //compute(sensVal);
-//        __delay_us(100);
-//        CS1_SetLow();
-//        SPI2_Exchange16bit(dacVal);
-//        CS1_SetHigh();
-//        __delay_ms(50);
+    { 
         
         if(UART1_IsRxReady() != 1) {
             keyboard = UART1_Read();
@@ -113,9 +106,6 @@ int main(void)
                     break;
             }
         } 
-        
-        
-        
         
     }
     return 1; 
