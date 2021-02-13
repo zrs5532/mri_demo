@@ -56,10 +56,13 @@
                          Main application
  */
 
-uint16_t dacVal = 32768; //32768
+uint16_t dacVal = 32767; //32767
 uint16_t sensVal;
+uint16_t skinVal;
 
-void ADCVal();
+uint8_t keyboard;
+
+void ADC1Val();
 void compute(uint16_t inp);
 
 int main(void)
@@ -71,34 +74,65 @@ int main(void)
     AD1CON1bits.SSRC = 0b111;
     
     sensVal = 1;
+    
+    printf("\n\r5 Second Delay to Calibrate\n\r");
+    __delay_ms(5000);
+    printf("Calibration complete.\n\r");
+    
+    
     while (1)
-    {    
-        ADCVal();
-         
-        printf("Sens Val: %d\n\r", sensVal);
-        __delay_us(100);
-        compute(sensVal);
-        __delay_ms(100);
-        CS1_SetLow();
-        SPI1_Exchange16bit(dacVal);
-        CS1_SetHigh();
-        __delay_ms(100);
+    {       
+//        __delay_us(100);
+//        //compute(sensVal);
+//        __delay_us(100);
+//        CS1_SetLow();
+//        SPI2_Exchange16bit(dacVal);
+//        CS1_SetHigh();
+//        __delay_ms(50);
+        
+        if(UART1_IsRxReady() != 1) {
+            keyboard = UART1_Read();
+            
+            switch(keyboard) {
+                case '1':
+                    while (sensVal < 2021 || sensVal > 2073) {
+                        ADC1Val();
+                        compute(sensVal);
+                        CS1_SetLow();
+                        SPI2_Exchange16bit(dacVal);
+                        CS1_SetHigh();
+                        __delay_ms(10);
+                        printf("Sens Val: %d\n\r", sensVal);
+                    }
+                    printf("Calibration Complete.\n\r");
+                    printf("Sens Val: %d\n\r", sensVal);
+                    break;
+                case '2':
+                    ADC1Val();
+                    printf("Sens Val: %d\n\r", sensVal);
+                    break;
+            }
+        } 
+        
+        
+        
         
     }
     return 1; 
 }
 
-void ADCVal() {
-  AD1CON1bits.DONE = 0;               // Clear DONE bit Before Start Sampling
-  AD1CON1bits.SAMP = 1;               // Start Sampling Manually
-  while (AD1CON1bits.DONE == 0);      // Wait for Conversion Completes
-  sensVal = ADC1BUF0;
+void ADC1Val() {
+    AD1CON1bits.DONE = 0;               // Clear DONE bit Before Start Sampling
+    AD1CON1bits.SAMP = 1;               // Start Sampling Manually
+    while (AD1CON1bits.DONE == 0);      // Wait for Conversion Completes
+    sensVal = ADC1BUF0;
+    
 }
 
 void compute(uint16_t inp) {
     if  (inp > 2073) {
         dacVal += 25;
-    } else if (inp < 2023) {
+    } else if (inp < 2021) {
         dacVal -= 25;
     }
 }
