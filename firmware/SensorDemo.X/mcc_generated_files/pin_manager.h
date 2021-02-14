@@ -202,6 +202,152 @@
 #define channel_AN0_SetDigitalOutput() (_TRISA0 = 0)
 /**
   @Summary
+    Sets the GPIO pin, RA1, high using LATA1.
+
+  @Description
+    Sets the GPIO pin, RA1, high using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA1 high (1)
+    channel_AN1_SetHigh();
+    </code>
+
+*/
+#define channel_AN1_SetHigh()          (_LATA1 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RA1, low using LATA1.
+
+  @Description
+    Sets the GPIO pin, RA1, low using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA1 low (0)
+    channel_AN1_SetLow();
+    </code>
+
+*/
+#define channel_AN1_SetLow()           (_LATA1 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RA1, using LATA1.
+
+  @Description
+    Toggles the GPIO pin, RA1, using LATA1.
+
+  @Preconditions
+    The RA1 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RA1
+    channel_AN1_Toggle();
+    </code>
+
+*/
+#define channel_AN1_Toggle()           (_LATA1 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RA1.
+
+  @Description
+    Reads the value of the GPIO pin, RA1.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RA1
+    postValue = channel_AN1_GetValue();
+    </code>
+
+*/
+#define channel_AN1_GetValue()         _RA1
+/**
+  @Summary
+    Configures the GPIO pin, RA1, as an input.
+
+  @Description
+    Configures the GPIO pin, RA1, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA1 as an input
+    channel_AN1_SetDigitalInput();
+    </code>
+
+*/
+#define channel_AN1_SetDigitalInput()  (_TRISA1 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RA1, as an output.
+
+  @Description
+    Configures the GPIO pin, RA1, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA1 as an output
+    channel_AN1_SetDigitalOutput();
+    </code>
+
+*/
+#define channel_AN1_SetDigitalOutput() (_TRISA1 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RB6, high using LATB6.
 
   @Description
@@ -365,11 +511,11 @@
   @Example
     <code>
     // Set RB7 high (1)
-    SCK1_SetHigh();
+    SDO2_SetHigh();
     </code>
 
 */
-#define SCK1_SetHigh()          (_LATB7 = 1)
+#define SDO2_SetHigh()          (_LATB7 = 1)
 /**
   @Summary
     Sets the GPIO pin, RB7, low using LATB7.
@@ -389,11 +535,11 @@
   @Example
     <code>
     // Set RB7 low (0)
-    SCK1_SetLow();
+    SDO2_SetLow();
     </code>
 
 */
-#define SCK1_SetLow()           (_LATB7 = 0)
+#define SDO2_SetLow()           (_LATB7 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RB7, using LATB7.
@@ -413,11 +559,11 @@
   @Example
     <code>
     // Toggle RB7
-    SCK1_Toggle();
+    SDO2_Toggle();
     </code>
 
 */
-#define SCK1_Toggle()           (_LATB7 ^= 1)
+#define SDO2_Toggle()           (_LATB7 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RB7.
@@ -439,11 +585,11 @@
     uint16_t portValue;
 
     // Read RB7
-    postValue = SCK1_GetValue();
+    postValue = SDO2_GetValue();
     </code>
 
 */
-#define SCK1_GetValue()         _RB7
+#define SDO2_GetValue()         _RB7
 /**
   @Summary
     Configures the GPIO pin, RB7, as an input.
@@ -463,11 +609,11 @@
   @Example
     <code>
     // Sets the RB7 as an input
-    SCK1_SetDigitalInput();
+    SDO2_SetDigitalInput();
     </code>
 
 */
-#define SCK1_SetDigitalInput()  (_TRISB7 = 1)
+#define SDO2_SetDigitalInput()  (_TRISB7 = 1)
 /**
   @Summary
     Configures the GPIO pin, RB7, as an output.
@@ -487,11 +633,11 @@
   @Example
     <code>
     // Sets the RB7 as an output
-    SCK1_SetDigitalOutput();
+    SDO2_SetDigitalOutput();
     </code>
 
 */
-#define SCK1_SetDigitalOutput() (_TRISB7 = 0)
+#define SDO2_SetDigitalOutput() (_TRISB7 = 0)
 /**
   @Summary
     Sets the GPIO pin, RB8, high using LATB8.
@@ -511,11 +657,11 @@
   @Example
     <code>
     // Set RB8 high (1)
-    SDO1_SetHigh();
+    SCK2OUT_SetHigh();
     </code>
 
 */
-#define SDO1_SetHigh()          (_LATB8 = 1)
+#define SCK2OUT_SetHigh()          (_LATB8 = 1)
 /**
   @Summary
     Sets the GPIO pin, RB8, low using LATB8.
@@ -535,11 +681,11 @@
   @Example
     <code>
     // Set RB8 low (0)
-    SDO1_SetLow();
+    SCK2OUT_SetLow();
     </code>
 
 */
-#define SDO1_SetLow()           (_LATB8 = 0)
+#define SCK2OUT_SetLow()           (_LATB8 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RB8, using LATB8.
@@ -559,11 +705,11 @@
   @Example
     <code>
     // Toggle RB8
-    SDO1_Toggle();
+    SCK2OUT_Toggle();
     </code>
 
 */
-#define SDO1_Toggle()           (_LATB8 ^= 1)
+#define SCK2OUT_Toggle()           (_LATB8 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RB8.
@@ -585,11 +731,11 @@
     uint16_t portValue;
 
     // Read RB8
-    postValue = SDO1_GetValue();
+    postValue = SCK2OUT_GetValue();
     </code>
 
 */
-#define SDO1_GetValue()         _RB8
+#define SCK2OUT_GetValue()         _RB8
 /**
   @Summary
     Configures the GPIO pin, RB8, as an input.
@@ -609,11 +755,11 @@
   @Example
     <code>
     // Sets the RB8 as an input
-    SDO1_SetDigitalInput();
+    SCK2OUT_SetDigitalInput();
     </code>
 
 */
-#define SDO1_SetDigitalInput()  (_TRISB8 = 1)
+#define SCK2OUT_SetDigitalInput()  (_TRISB8 = 1)
 /**
   @Summary
     Configures the GPIO pin, RB8, as an output.
@@ -633,157 +779,11 @@
   @Example
     <code>
     // Sets the RB8 as an output
-    SDO1_SetDigitalOutput();
+    SCK2OUT_SetDigitalOutput();
     </code>
 
 */
-#define SDO1_SetDigitalOutput() (_TRISB8 = 0)
-/**
-  @Summary
-    Sets the GPIO pin, RB9, high using LATB9.
-
-  @Description
-    Sets the GPIO pin, RB9, high using LATB9.
-
-  @Preconditions
-    The RB9 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB9 high (1)
-    SDI1_SetHigh();
-    </code>
-
-*/
-#define SDI1_SetHigh()          (_LATB9 = 1)
-/**
-  @Summary
-    Sets the GPIO pin, RB9, low using LATB9.
-
-  @Description
-    Sets the GPIO pin, RB9, low using LATB9.
-
-  @Preconditions
-    The RB9 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB9 low (0)
-    SDI1_SetLow();
-    </code>
-
-*/
-#define SDI1_SetLow()           (_LATB9 = 0)
-/**
-  @Summary
-    Toggles the GPIO pin, RB9, using LATB9.
-
-  @Description
-    Toggles the GPIO pin, RB9, using LATB9.
-
-  @Preconditions
-    The RB9 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Toggle RB9
-    SDI1_Toggle();
-    </code>
-
-*/
-#define SDI1_Toggle()           (_LATB9 ^= 1)
-/**
-  @Summary
-    Reads the value of the GPIO pin, RB9.
-
-  @Description
-    Reads the value of the GPIO pin, RB9.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    uint16_t portValue;
-
-    // Read RB9
-    postValue = SDI1_GetValue();
-    </code>
-
-*/
-#define SDI1_GetValue()         _RB9
-/**
-  @Summary
-    Configures the GPIO pin, RB9, as an input.
-
-  @Description
-    Configures the GPIO pin, RB9, as an input.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB9 as an input
-    SDI1_SetDigitalInput();
-    </code>
-
-*/
-#define SDI1_SetDigitalInput()  (_TRISB9 = 1)
-/**
-  @Summary
-    Configures the GPIO pin, RB9, as an output.
-
-  @Description
-    Configures the GPIO pin, RB9, as an output.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB9 as an output
-    SDI1_SetDigitalOutput();
-    </code>
-
-*/
-#define SDI1_SetDigitalOutput() (_TRISB9 = 0)
+#define SCK2OUT_SetDigitalOutput() (_TRISB8 = 0)
 
 /**
     Section: Function Prototypes

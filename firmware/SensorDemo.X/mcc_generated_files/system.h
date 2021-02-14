@@ -50,7 +50,7 @@
 #include "stdint.h"
 #include "system_types.h"
 #include "pin_manager.h"
-#include "spi1.h"
+#include "spi2.h"
 #include "adc1.h"
 #include "adc_module_features.h"
 #include "uart1.h"

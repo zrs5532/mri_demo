@@ -91,6 +91,7 @@
 typedef enum 
 {
     channel_AN0,//Channel Name:AN0   Assigned to:Shared Channel
+    channel_AN1,//Channel Name:AN1   Assigned to:Shared Channel
     channel_CTMU_Temp,//Channel Name:CTMU Temp   Assigned to:Shared Channel
     channel_CTMU,//Channel Name:CTMU   Assigned to:Shared Channel
 } ADC1_CHANNEL;
@@ -385,11 +386,14 @@ inline static uint16_t ADC1_ConversionResultGet( ADC1_CHANNEL channel )
         case channel_AN0:
                 result = ADC1BUF0;
                 break;
-        case channel_CTMU_Temp:
+        case channel_AN1:
                 result = ADC1BUF1;
                 break;
-        case channel_CTMU:
+        case channel_CTMU_Temp:
                 result = ADC1BUF2;
+                break;
+        case channel_CTMU:
+                result = ADC1BUF3;
                 break;
         default:
                 break;
@@ -716,16 +720,16 @@ typedef enum
  */
 typedef enum 
 {
-    ADC1_SAMPLING_SOURCE_PTGO14  =  0x5,
+    ADC1_SAMPLING_SOURCE_INT0  =  0x1,
+    ADC1_SAMPLING_SOURCE_TMR3  =  0x2,
+    ADC1_SAMPLING_SOURCE_PTGO12  =  0x3,
     ADC1_SAMPLING_SOURCE_TMR5  =  0x4,
     ADC1_SAMPLING_SOURCE_AUTO  =  0x7,
-    ADC1_SAMPLING_SOURCE_TMR3  =  0x2,
-    ADC1_SAMPLING_SOURCE_INT0  =  0x1,
-    ADC1_SAMPLING_SOURCE_PTGO15  =  0x6,
-    ADC1_SAMPLING_SOURCE_PTGO12  =  0x3,
-    ADC1_SAMPLING_SOURCE_MANUAL  =  0x0,
     ADC1_SAMPLING_SOURCE_CTMU  =  0x6,
+    ADC1_SAMPLING_SOURCE_PTGO15  =  0x6,
     ADC1_SAMPLING_SOURCE_PTGO13  =  0x4,
+    ADC1_SAMPLING_SOURCE_MANUAL  =  0x0,
+    ADC1_SAMPLING_SOURCE_PTGO14  =  0x5,
 } ADC1_SAMPLING_SOURCE;
 
 /** ADC Conversion Channel Type Definition
