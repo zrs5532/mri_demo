@@ -371,7 +371,7 @@ P 1250 2450
 F 0 "K?" H 1250 2185 50  0000 C CNN
 F 1 "PB" H 1250 2276 50  0000 C CNN
 F 2 "" H 1250 2300 60  0001 C CNN
-F 3 "https://www.mouser.com/ProductDetail/Schurter/1241161211?qs=JHn%2F0Af%2Fl5HGUVmYq1Th2w%3D%3D" H 1250 2300 60  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG/?qs=QtyuwXswaQiWhwgY68YTTw%3D%3D" H 1250 2300 60  0001 C CNN
 	1    1250 2450
 	-1   0    0    1   
 $EndComp
@@ -604,8 +604,6 @@ Wire Wire Line
 NoConn ~ 4950 3800
 Wire Wire Line
 	4950 3500 3900 3500
-Text Notes 4050 3500 0    40   ~ 0
-Let's use SPI2 so we don't\nhave to twist the wires.
 Text Notes 10650 850  0    40   ~ 0
 Note:\nVref = 3V\nVbias = 1.5V
 Text Label 6400 3700 0    50   ~ 0
@@ -974,8 +972,8 @@ Wire Wire Line
 Connection ~ 10750 2550
 Wire Wire Line
 	10050 2100 10050 2700
-Text Notes 9450 2850 0    40   ~ 0
-Maximum 20mA,\nuse 15mA
+Text Notes 9450 2950 0    40   ~ 0
+Maximum 10mA of current\nif using REF1930 as reference\nvoltage
 $Comp
 L SensorDemo_passive:FB FB?
 U 1 1 6033AEDC
@@ -1036,8 +1034,6 @@ Wire Wire Line
 Connection ~ 5900 4200
 Wire Wire Line
 	5900 4200 5900 3800
-Text Notes 2300 4150 0    50   ~ 0
-Please include the crystal circuit\nfor the mcu
 Text Notes 6550 3150 0    50   ~ 0
 Gain is decided by application.
 $Comp
@@ -1346,4 +1342,6 @@ Wire Wire Line
 Wire Wire Line
 	9500 2700 9300 2700
 Connection ~ 9300 2700
+Text Notes 650  3150 0    40   ~ 0
+Let's check this button. \nI search under "pushbutton switches"\non mouser, and sorted the list\nby price. make sure the pin assignment\nis correct, and create its footprint.
 $EndSCHEMATC
