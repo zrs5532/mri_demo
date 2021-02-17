@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name ft231x-breakout-v11)(type KiCad)(uri "$(KIPRJMOD)/ft231x-breakout-v11.pretty")(options "")(descr ""))
+)

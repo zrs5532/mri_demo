@@ -1,4 +1,4 @@
-283872608446530
+285500928146031
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -804,6 +804,13 @@ SOT-23-3
 0
 3
 3
+SensorDemo_pcb
+SOT-23-4
+
+
+0
+4
+4
 SensorDemo_pcb
 SOT-23-5
 
