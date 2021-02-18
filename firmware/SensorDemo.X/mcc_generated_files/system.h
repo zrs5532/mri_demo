@@ -55,6 +55,7 @@
 #include "adc_module_features.h"
 #include "uart1.h"
 #include "string.h"
+#include "interrupt_manager.h"
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H

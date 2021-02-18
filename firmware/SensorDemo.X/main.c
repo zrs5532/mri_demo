@@ -60,10 +60,16 @@ uint16_t dacVal = 32767; //32767
 uint16_t sensVal;
 uint16_t skinVal;
 
-uint8_t keyboard;
+bool runSense;
+
+uint8_t cmd;
+uint8_t cmd2;
 
 void ADC1Val();
 void compute(uint16_t inp);
+void UART1_Receive_CallBack(void);
+char UART1_RX_NB(void);
+void calibrate(void);
 
 int main(void)
 {
@@ -84,10 +90,10 @@ int main(void)
     { 
         
         if(UART1_IsRxReady() != 1) {
-            keyboard = UART1_Read();
+            cmd2 = UART1_Read();
             
-            switch(keyboard) {
-                case '1':
+            switch(cmd2) {
+                case '0':
                     while (sensVal < 2021 || sensVal > 2073) {
                         ADC1Val();
                         compute(sensVal);
@@ -100,12 +106,15 @@ int main(void)
                     printf("Calibration Complete.\n\r");
                     printf("Sens Val: %d\n\r", sensVal);
                     break;
-                case '2':
-                    ADC1Val();
-                    printf("Sens Val: %d\n\r", sensVal);
+                case '9':
+                    runSense = true;
+                    while (runSense) {
+                        ADC1Val();
+                        printf("Sens Val: %d\n\r", sensVal);
+                    }
                     break;
-            }
-        } 
+                }
+            } 
         
     }
     return 1; 
@@ -124,6 +133,44 @@ void compute(uint16_t inp) {
         dacVal += 25;
     } else if (inp < 2021) {
         dacVal -= 25;
+    }
+}
+
+void UART1_Receive_CallBack(void) {
+    __delay_us(10);
+    cmd = (uint8_t)UART1_RX_NB();
+    printf("%d", cmd);
+    
+    if(cmd == '1') {
+        //printf("test\n\r");
+        //calibrate();
+        printf("test\n\r");
+        
+    }
+//    else if(cmd == '2') {
+//        //runSense = false;
+//        printf("runSense is false");
+//    }
+}
+
+char UART1_RX_NB(void) {
+    if(U1STAbits.URXDA == 1) {
+        return U1RXREG;
+    }
+    else {
+        return 0;
+    }
+}
+
+void calibrate(void) {
+    while (sensVal < 2021 || sensVal > 2073) {
+        ADC1Val();
+        compute(sensVal);
+        CS1_SetLow();
+        SPI2_Exchange16bit(dacVal);
+        CS1_SetHigh();
+        __delay_ms(10);
+        printf("Sens Val: %d\n\r", sensVal);
     }
 }
 
