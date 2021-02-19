@@ -1,4 +1,4 @@
-285500928146031
+287114632892323
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -888,6 +888,13 @@ SW_OS102011MA1QN1
 0
 5
 3
+SensorDemo_pcb
+TC2030
+
+
+0
+0
+0
 SensorDemo_pcb
 TC_1206
 
