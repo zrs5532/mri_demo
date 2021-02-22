@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source D:\Users\Daniel\Documents\GitHub\mri_demo\circuit_board\SensorDemo\SensorDemo.sch)
-    (date "2/16/2021 7:38:00 PM")
+    (date "2/19/2021 10:02:42 PM")
     (tool "Eeschema (5.1.8)-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -163,8 +163,8 @@
       (tstamp 6043DFE4))
     (comp (ref TC1)
       (value 10uF)
-      (fields
-        (field (name link) https://www.mouser.com/ProductDetail/AVX/TAJB106K020SNJ/?qs=sGAEpiMZZMtZ1n0r9vR22dqqeipQnnsBpy1lZYztj8Q%3D))
+      (footprint SensorDemo_pcb:C1210)
+      (datasheet https://www.mouser.com/ProductDetail/AVX/TAJB106K020SNJ/?qs=sGAEpiMZZMtZ1n0r9vR22dqqeipQnnsBpy1lZYztj8Q%3D)
       (libsource (lib SensorDemo_passive) (part TC) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 6046A72B))
@@ -251,6 +251,7 @@
       (tstamp 602E1AF2))
     (comp (ref P2)
       (value CONN3X2)
+      (footprint SensorDemo_pcb:TC2030)
       (libsource (lib SensorDemo_connector) (part CONN3X2) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 602BAE03))
@@ -293,6 +294,7 @@
       (tstamp 60446EE9))
     (comp (ref P1)
       (value CONN3X2)
+      (footprint SensorDemo_pcb:TC2030)
       (libsource (lib SensorDemo_connector) (part CONN3X2) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 602DD6B9)))
