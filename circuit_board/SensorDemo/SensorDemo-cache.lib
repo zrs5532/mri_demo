@@ -183,6 +183,19 @@ X ~ 4 250 -50 150 L 50 50 1 1 U
 ENDDRAW
 ENDDEF
 #
+# SensorDemo_discrete_TP
+#
+DEF SensorDemo_discrete_TP TP? 0 0 N N 1 F N
+F0 "TP?" -150 -150 60 H V C CNN
+F1 "SensorDemo_discrete_TP" 100 -150 60 H I C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+C 0 50 50 0 1 0 N
+X ~ 1 0 -100 100 U 50 50 1 1 U
+ENDDRAW
+ENDDEF
+#
 # SensorDemo_passive_C
 #
 DEF SensorDemo_passive_C C 0 10 N Y 1 F N

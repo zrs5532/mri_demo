@@ -1,4 +1,4 @@
-(module TP_SMD (layer F.Cu) (tedit 60355FD7)
+(module TP_SMD_1MM (layer F.Cu) (tedit 60355FDF)
   (fp_text reference Ref** (at 0 2.54) (layer F.SilkS) hide
     (effects (font (size 1.016 1.016) (thickness 0.1524)))
   )

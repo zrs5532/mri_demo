@@ -1,4 +1,4 @@
-287114973029996
+287237324129539
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -973,6 +973,20 @@ TP_SMD
 1
 1
 SensorDemo_pcb
+TP_SMD_1MM
+
+
+0
+1
+1
+SensorDemo_pcb
+TP_SMD_2MM
+
+
+0
+1
+1
+SensorDemo_pcb
 TP_TH
 
 
@@ -1077,20 +1091,6 @@ VSSOP_8
 0
 8
 8
-SensorDemo_pcb
-Virtual_elevator_1
-
-
-0
-0
-0
-SensorDemo_pcb
-Virtual_elevator_2
-
-
-0
-0
-0
 SensorDemo_pcb
 ZIF_4
 
@@ -1204,6 +1204,13 @@ logo_pattern
 0
 0
 SensorDemo_pcb
+logo_st
+
+
+0
+0
+0
+SensorDemo_pcb
 relay_G3MC
 
 
@@ -1238,10 +1245,3 @@ sAFAM_FB_CARRIER
 0
 10
 10
-SensorDemo_pcb
-stm_logo
-
-
-0
-0
-0
