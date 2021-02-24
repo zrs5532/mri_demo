@@ -100,7 +100,7 @@ P 2900 1350
 F 0 "FB1" H 2900 1300 50  0000 C CNN
 F 1 "12.3071 nano ohm" H 2975 1450 50  0001 C CNN
 F 2 "SensorDemo_pcb:R0805" H 2900 1350 50  0001 C CNN
-F 3 "" H 2900 1350 50  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/Fair-Rite/2508051027Y1?qs=paL1wOLBYNd1w0Ok9jKq0w%3D%3D" H 2900 1350 50  0001 C CNN
 	1    2900 1350
 	1    0    0    -1  
 $EndComp
@@ -892,7 +892,7 @@ P 4600 3050
 F 0 "FB2" H 4600 3000 50  0000 C CNN
 F 1 "12.3071 nano ohm" H 4675 3150 50  0001 C CNN
 F 2 "SensorDemo_pcb:R0805" H 4600 3050 50  0001 C CNN
-F 3 "" H 4600 3050 50  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/Fair-Rite/2508051027Y1?qs=paL1wOLBYNd1w0Ok9jKq0w%3D%3D" H 4600 3050 50  0001 C CNN
 	1    4600 3050
 	1    0    0    -1  
 $EndComp
@@ -1409,4 +1409,111 @@ Wire Wire Line
 	9500 5150 9450 5150
 Wire Wire Line
 	9500 5350 9450 5350
+Wire Wire Line
+	1700 5450 1000 5450
+Wire Wire Line
+	1000 5450 1000 5750
+Connection ~ 1000 5750
+Wire Wire Line
+	1700 5200 1000 5200
+Wire Wire Line
+	1000 5200 1000 5450
+Connection ~ 1000 5450
+Wire Wire Line
+	2100 4100 2600 4100
+Wire Wire Line
+	2600 4100 2600 3850
+Wire Wire Line
+	2600 3850 2750 3850
+Wire Wire Line
+	2100 4200 2700 4200
+Wire Wire Line
+	2700 4200 2700 3950
+Wire Wire Line
+	2700 3950 2750 3950
+Text Label 2100 4100 0    50   ~ 0
+OSC1
+Text Label 2100 4200 0    50   ~ 0
+OSC2
+Text Label 1700 5200 2    50   ~ 0
+OSC1
+Text Label 1700 5450 2    50   ~ 0
+OSC2
+$Comp
+L SensorDemo_discrete:MH MH1
+U 1 1 6041AA27
+P 2650 5300
+F 0 "MH1" H 2778 5300 60  0000 L CNN
+F 1 "MH" H 2650 5300 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 2650 5300 60  0001 C CNN
+F 3 "" H 2650 5300 60  0000 C CNN
+	1    2650 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH3
+U 1 1 6041B104
+P 3100 5300
+F 0 "MH3" H 3228 5300 60  0000 L CNN
+F 1 "MH" H 3100 5300 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 3100 5300 60  0001 C CNN
+F 3 "" H 3100 5300 60  0000 C CNN
+	1    3100 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH5
+U 1 1 6041B3CD
+P 3550 5300
+F 0 "MH5" H 3678 5300 60  0000 L CNN
+F 1 "MH" H 3550 5300 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 3550 5300 60  0001 C CNN
+F 3 "" H 3550 5300 60  0000 C CNN
+	1    3550 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH7
+U 1 1 6041B6C9
+P 4000 5300
+F 0 "MH7" H 4128 5300 60  0000 L CNN
+F 1 "MH" H 4000 5300 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 4000 5300 60  0001 C CNN
+F 3 "" H 4000 5300 60  0000 C CNN
+	1    4000 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH2
+U 1 1 6041C7FF
+P 2900 5600
+F 0 "MH2" H 3028 5600 60  0000 L CNN
+F 1 "MH" H 2900 5600 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 2900 5600 60  0001 C CNN
+F 3 "" H 2900 5600 60  0000 C CNN
+	1    2900 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH4
+U 1 1 6041CC94
+P 3350 5600
+F 0 "MH4" H 3478 5600 60  0000 L CNN
+F 1 "MH" H 3350 5600 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 3350 5600 60  0001 C CNN
+F 3 "" H 3350 5600 60  0000 C CNN
+	1    3350 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L SensorDemo_discrete:MH MH6
+U 1 1 6041D148
+P 3800 5600
+F 0 "MH6" H 3928 5600 60  0000 L CNN
+F 1 "MH" H 3800 5600 60  0001 C CNN
+F 2 "SensorDemo_pcb:MH_3MM" H 3800 5600 60  0001 C CNN
+F 3 "" H 3800 5600 60  0000 C CNN
+	1    3800 5600
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
