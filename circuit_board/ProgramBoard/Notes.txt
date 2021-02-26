@@ -1,0 +1,7 @@
+here are some notes regarding the design.
+
+Per discussion with Douglas, we decided to make a rigid board for the first demo.
+On the board, we shall have the MCU, DAC, INA, voltage reference, and LDO.
+We created another board to interface the UART to USB dongle, through Tag-connect cable: TC2030-IDC-NL.
+the dongle will be located on another interfacing board.
+the same tag cable can be used to program the MCU.
