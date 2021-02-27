@@ -1161,28 +1161,18 @@ F 3 "https://www.mouser.com/ProductDetail/ABRACON/ABM3-8000MHZ-B4Y-T?qs=%252BlF%
 $EndComp
 Text Notes 800  3800 0    40   ~ 0
 Let's check this button. \nI search under "pushbutton switches"\non mouser, and sorted the list\nby price. make sure the pin assignment\nis correct, and create its footprint.
-Text Label 3700 6700 2    50   ~ 0
-PGM
 Text Label 2500 6700 0    50   ~ 0
 PGC
 Text Label 3700 6600 2    50   ~ 0
 PGD
-Text Label 2500 6600 0    50   ~ 0
-VSS
-Text Label 3700 6500 2    50   ~ 0
-VDD
 Text Label 2500 6500 0    50   ~ 0
 ~MCLR
-Wire Wire Line
-	3700 6700 3450 6700
 Wire Wire Line
 	3700 6600 3450 6600
 Wire Wire Line
 	3450 6500 3700 6500
 Wire Wire Line
 	2500 6700 2750 6700
-Wire Wire Line
-	2500 6600 2750 6600
 Wire Wire Line
 	2500 6500 2750 6500
 $Comp
@@ -1306,7 +1296,7 @@ Wire Wire Line
 Connection ~ 9500 5050
 Wire Wire Line
 	10050 4000 9950 4000
-Text Notes 2350 6950 0    40   ~ 0
+Text Notes 550  7600 0    40   ~ 0
 we should use the "no leg" version:\nhttps://www.tag-connect.com/product/tc2030-alt-nl-no-legs-cable-for-use-with-altera-usb-blaster
 $Comp
 L SensorDemo_discrete:TP TP1
@@ -1585,4 +1575,35 @@ Wire Wire Line
 Connection ~ 2300 1350
 Wire Wire Line
 	2300 1350 2750 1350
+Text Label 2200 3050 0    50   ~ 0
+~MCLR
+NoConn ~ 3450 6700
+$Comp
+L SensorDemo_power_supply:GND #PS?
+U 1 1 6063F2B2
+P 2400 6800
+F 0 "#PS?" H 2400 6675 50  0001 C CNN
+F 1 "GND" H 2400 6725 50  0001 C CNN
+F 2 "" H 2400 6800 50  0001 C CNN
+F 3 "" H 2400 6800 50  0001 C CNN
+	1    2400 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 6600 2400 6750
+Wire Wire Line
+	2400 6600 2750 6600
+$Comp
+L SensorDemo_power_supply:+3V3 #PS?
+U 1 1 6064F95D
+P 3700 6350
+F 0 "#PS?" H 3700 6300 50  0001 C CNN
+F 1 "+3V3" H 3600 6450 50  0000 L CNN
+F 2 "" H 3705 6045 50  0001 C CNN
+F 3 "" H 3705 6045 50  0001 C CNN
+	1    3700 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 6500 3700 6350
 $EndSCHEMATC
