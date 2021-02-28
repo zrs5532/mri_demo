@@ -1,4 +1,4 @@
-288735005333153
+291894819285195
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -224,13 +224,6 @@ ERNI-114711
 8
 6
 SensorDemo_pcb
-FT231X_breakout
-
-
-0
-20
-20
-SensorDemo_pcb
 HEADER_2
 
 
@@ -433,6 +426,13 @@ HEADER_23x2
 0
 46
 46
+SensorDemo_pcb
+IDC_10
+
+
+0
+10
+10
 SensorDemo_pcb
 IN_P1170
 
@@ -896,12 +896,26 @@ SW_OS102011MA1QN1
 5
 3
 SensorDemo_pcb
+SparkFun_FT231X_Breakout
+
+
+0
+20
+20
+SensorDemo_pcb
 TC2030
 
 
 0
 6
 6
+SensorDemo_pcb
+TC2050
+
+
+0
+10
+10
 SensorDemo_pcb
 TC_1206
 
