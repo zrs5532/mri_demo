@@ -23,6 +23,21 @@ X ~ 9 -350 -200 200 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+# SensorDemo_connector_HEADER_3
+#
+DEF SensorDemo_connector_HEADER_3 P 0 40 Y N 1 F N
+F0 "P" 150 -400 50 H V C CNN
+F1 "SensorDemo_connector_HEADER_3" 0 -550 50 H I C CNN
+F2 "" 3300 -2200 60 H V C CNN
+F3 "" 3300 -2200 60 H V C CNN
+DRAW
+S -150 100 150 -100 0 1 0 N
+X ~ 1 -100 -300 200 U 50 50 1 1 U
+X ~ 2 0 -300 200 U 50 50 1 1 U
+X ~ 3 100 -300 200 U 50 50 1 1 U
+ENDDRAW
+ENDDEF
+#
 # SensorDemo_connector_HEADER_6
 #
 DEF SensorDemo_connector_HEADER_6 P 0 40 Y N 1 F N
@@ -72,6 +87,34 @@ X DCD 6 -700 -100 200 R 50 50 1 1 U
 X CTS 7 -700 -200 200 R 50 50 1 1 U
 X GND 8 -250 -650 200 U 50 50 1 1 U
 X CTS 9 -150 -650 200 U 50 50 1 1 U
+ENDDRAW
+ENDDEF
+#
+# SensorDemo_power_supply_+5V
+#
+DEF SensorDemo_power_supply_+5V PS 0 0 N N 1 F P
+F0 "PS" 0 -50 50 H I C CNN
+F1 "SensorDemo_power_supply_+5V" 0 100 50 H V C CNN
+F2 "" 5 -305 50 H I C CNN
+F3 "" 5 -305 50 H I C CNN
+DRAW
+P 2 0 1 0 40 70 -40 70 N
+X +5V 1 0 0 70 U 40 40 1 1 W
+ENDDRAW
+ENDDEF
+#
+# SensorDemo_power_supply_GND
+#
+DEF SensorDemo_power_supply_GND PS 0 0 N N 1 F P
+F0 "PS" 0 -125 50 H I C CNN
+F1 "SensorDemo_power_supply_GND" 0 -75 50 H I C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -45 0 45 0 N
+P 2 0 1 0 -25 -20 25 -20 N
+P 2 0 1 0 -5 -40 5 -40 N
+X GND 1 0 50 50 D 40 40 1 1 W
 ENDDRAW
 ENDDEF
 #

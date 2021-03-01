@@ -1,4 +1,4 @@
-291894819285195
+293513590864158
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -230,6 +230,13 @@ HEADER_2
 0
 2
 2
+SensorDemo_pcb
+HEADER_2X2
+
+
+0
+4
+4
 SensorDemo_pcb
 HEADER_2_PLATE
 
