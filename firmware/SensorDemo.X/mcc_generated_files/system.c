@@ -45,7 +45,7 @@
 // Configuration bits: selected in the GUI
 
 // FICD
-#pragma config ICS = PGD3    //ICD Communication Channel Select bits->Communicate on PGEC3 and PGED3
+#pragma config ICS = PGD1    //ICD Communication Channel Select bits->Communicate on PGEC1 and PGED1
 #pragma config JTAGEN = OFF    //JTAG Enable bit->JTAG is disabled
 
 // FPOR
@@ -78,21 +78,21 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "uart1.h"
-#include "adc1.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "adc1.h"
+#include "uart1.h"
 #include "spi2.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    CLOCK_Initialize();
     INTERRUPT_Initialize();
+    CLOCK_Initialize();
     SPI2_Initialize();
     UART1_Initialize();
     ADC1_Initialize();
-    INTERRUPT_GlobalEnable();
+    INTERRUPT_GlobalDisable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }
 
