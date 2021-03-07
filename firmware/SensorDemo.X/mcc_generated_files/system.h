@@ -56,6 +56,7 @@
 #include "uart1.h"
 #include "string.h"
 #include "interrupt_manager.h"
+#include "tmr1.h"
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H

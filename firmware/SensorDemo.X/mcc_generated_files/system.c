@@ -80,9 +80,10 @@
 #include "system_types.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "spi2.h"
+#include "tmr1.h"
 #include "adc1.h"
 #include "uart1.h"
-#include "spi2.h"
 
 void SYSTEM_Initialize(void)
 {
@@ -92,6 +93,7 @@ void SYSTEM_Initialize(void)
     SPI2_Initialize();
     UART1_Initialize();
     ADC1_Initialize();
+    TMR1_Initialize();
     INTERRUPT_GlobalDisable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }

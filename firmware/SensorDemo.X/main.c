@@ -78,11 +78,16 @@ int main(void)
     AD1CON1bits.SSRCG = 0;
     AD1CON1bits.SSRC = 0b111;
     
+//    T2CON = 0x0000;
+//    T2CONbits.TCKPS = 0b10;
+//    T2CONbits.T32 = 1;
+    
     sensVal = 1;
     
     printf("\n\r5 Second Delay to Settle\n\r");
     __delay_ms(5000);
     printf("Settling complete.\n\r");
+    
     
     
     while (1)
@@ -95,11 +100,6 @@ int main(void)
         ADC1Val();
         printf("Sens Val: %d\n\r", sensVal);
             
-//            calibrate();
-//        } else {
-//            ADC1Val();
-//            printf("Sens Val: %d\n\r", sensVal);
-//        }
             
 //            switch(cmd) {
 //                case '1':
@@ -174,6 +174,11 @@ void calibrate(void) {
         printf("Calibrating...\n\r");
     }
 }
+
+//void __attribute__((__interrupt__, no_auto_psv)) _T1Interrupt(void) {
+//    IFS0bits.T1IF = 0;
+//}
+//
 
 /**
  End of File
