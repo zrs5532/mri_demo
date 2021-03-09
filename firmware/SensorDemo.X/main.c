@@ -56,9 +56,14 @@
                          Main application
  */
 
+
 uint16_t dacVal = 32767; //32767
 uint16_t sensVal;
 uint16_t skinVal;
+
+uint16_t setpoint = 2047;
+int16_t error;
+float kp = 0.3;
 
 bool runSense;
 
@@ -130,11 +135,13 @@ void ADC1Val() {
 }
 
 void compute(uint16_t inp) {
-    if  (inp > 2073) {
-        dacVal += 25;
-    } else if (inp < 2021) {
-        dacVal -= 25;
-    }
+    error = setpoint - inp;
+    dacVal = kp*error;
+//    if  (inp > 2073) {
+//        dacVal = kp*error;
+//    } else if (inp < 2021) {
+//        dacVal = kp*error;
+//    }
 }
 
 //void UART1_Receive_CallBack(void) {
@@ -166,12 +173,12 @@ char UART1_RX_NB(void) {
 void calibrate(void) {
     while (sensVal < 2021 || sensVal > 2073) {
         ADC1Val();
-        compute(sensVal);
+        compute(sensVal << 4);
         CS1_SetLow();
         SPI2_Exchange16bit(dacVal);
         CS1_SetHigh();
         __delay_ms(10);
-        printf("Calibrating...\n\r");
+        printf("Calibrating... %d\n\r", sensVal);
     }
 }
 
