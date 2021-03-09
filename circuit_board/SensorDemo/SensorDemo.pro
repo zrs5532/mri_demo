@@ -1,4 +1,4 @@
-update=2/26/2021 19:48:48
+update=3/9/2021 10:37:47
 version=1
 last_client=kicad
 [general]
@@ -72,7 +72,7 @@ CopperTextThickness=0.1524
 CopperTextItalic=0
 CopperTextUpright=1
 EdgeCutLineWidth=0.1524
-CourtyardLineWidth=0.1524
+CourtyardLineWidth=0.05
 OthersLineWidth=0.1524
 OthersTextSizeV=1.016
 OthersTextSizeH=1.016
@@ -252,7 +252,7 @@ Enabled=0
 [pcbnew/Netclasses]
 [pcbnew/Netclasses/Default]
 Name=Default
-Clearance=0.254
+Clearance=0.1524
 TrackWidth=0.254
 ViaDiameter=0.4
 ViaDrill=0.3
@@ -263,7 +263,7 @@ dPairGap=0.25
 dPairViaGap=0.25
 [pcbnew/Netclasses/1]
 Name=3V3
-Clearance=0.254
+Clearance=0.1524
 TrackWidth=0.381
 ViaDiameter=0.4
 ViaDrill=0.3
@@ -274,7 +274,7 @@ dPairGap=0.25
 dPairViaGap=0.25
 [pcbnew/Netclasses/2]
 Name=GND
-Clearance=0.254
+Clearance=0.1524
 TrackWidth=0.381
 ViaDiameter=0.4
 ViaDrill=0.3
