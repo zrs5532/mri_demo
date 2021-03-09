@@ -4,4 +4,8 @@ $CMP NTHD4508N
 D N-Channel, Dual, Power MOSFET
 $ENDCMP
 #
+$CMP PB_SMD
+F https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG/?qs=QtyuwXswaQiWhwgY68YTTw%3D%3D
+$ENDCMP
+#
 #End Doc Library

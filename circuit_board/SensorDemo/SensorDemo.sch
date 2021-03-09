@@ -296,12 +296,12 @@ Connection ~ 6950 1350
 $Comp
 L SensorDemo_passive:R R3
 U 1 1 602D3910
-P 1800 2900
-F 0 "R3" V 1750 2950 50  0000 L CNN
-F 1 "10k" V 1850 2950 50  0000 L CNN
-F 2 "SensorDemo_pcb:R0805" H 1750 2830 30  0001 C CNN
-F 3 "" V 1800 2900 30  0000 C CNN
-	1    1800 2900
+P 1900 2800
+F 0 "R3" V 1850 2850 50  0000 L CNN
+F 1 "10k" V 1950 2850 50  0000 L CNN
+F 2 "SensorDemo_pcb:R0805" H 1850 2730 30  0001 C CNN
+F 3 "" V 1900 2800 30  0000 C CNN
+	1    1900 2800
 	0    1    1    0   
 $EndComp
 $Comp
@@ -329,7 +329,7 @@ $EndComp
 Wire Wire Line
 	1800 3400 1800 3450
 Wire Wire Line
-	1800 2700 1800 2750
+	1900 2600 1900 2650
 Wire Wire Line
 	10150 1150 9950 1150
 Wire Wire Line
@@ -362,25 +362,10 @@ F 3 "" V 7350 3900 30  0000 C CNN
 	1    7350 3900
 	1    0    0    -1  
 $EndComp
-$Comp
-L SensorDemo_discrete:PB K1
-U 1 1 60393582
-P 1400 3100
-F 0 "K1" H 1400 2835 50  0000 C CNN
-F 1 "PB" H 1400 2926 50  0000 C CNN
-F 2 "SensorDemo_pcb:SOT-23-4" H 1400 2950 60  0001 C CNN
-F 3 "https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG/?qs=QtyuwXswaQiWhwgY68YTTw%3D%3D" H 1400 2950 60  0001 C CNN
-	1    1400 3100
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	1800 3050 1800 3100
 Wire Wire Line
 	1800 3050 1650 3050
-Wire Wire Line
-	1150 3050 1050 3050
-Wire Wire Line
-	1050 3050 1050 3400
 Wire Wire Line
 	1050 3400 1800 3400
 Connection ~ 1800 3400
@@ -388,12 +373,12 @@ Connection ~ 1800 3050
 $Comp
 L SensorDemo_power_supply:+3V3 #PS0104
 U 1 1 603D7984
-P 1800 2700
-F 0 "#PS0104" H 1800 2650 50  0001 C CNN
-F 1 "+3V3" H 1700 2800 50  0000 L CNN
-F 2 "" H 1805 2395 50  0001 C CNN
-F 3 "" H 1805 2395 50  0001 C CNN
-	1    1800 2700
+P 1900 2600
+F 0 "#PS0104" H 1900 2550 50  0001 C CNN
+F 1 "+3V3" H 1800 2700 50  0000 L CNN
+F 2 "" H 1905 2295 50  0001 C CNN
+F 3 "" H 1905 2295 50  0001 C CNN
+	1    1900 2600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -542,7 +527,7 @@ Connection ~ 2650 4350
 Wire Wire Line
 	2650 4350 2650 3750
 Wire Wire Line
-	1800 3050 2750 3050
+	1800 3050 1900 3050
 $Comp
 L SensorDemo_passive:C C19
 U 1 1 604C549A
@@ -1159,8 +1144,6 @@ F 3 "https://www.mouser.com/ProductDetail/ABRACON/ABM3-8000MHZ-B4Y-T?qs=%252BlF%
 	1    1350 6250
 	1    0    0    -1  
 $EndComp
-Text Notes 800  3800 0    40   ~ 0
-Let's check this button. \nI search under "pushbutton switches"\non mouser, and sorted the list\nby price. make sure the pin assignment\nis correct, and create its footprint.
 Text Label 2500 6700 0    50   ~ 0
 PGC
 Text Label 3700 6600 2    50   ~ 0
@@ -1579,10 +1562,10 @@ Text Label 2200 3050 0    50   ~ 0
 ~MCLR
 NoConn ~ 3450 6700
 $Comp
-L SensorDemo_power_supply:GND #PS?
+L SensorDemo_power_supply:GND #PS0126
 U 1 1 6063F2B2
 P 2400 6800
-F 0 "#PS?" H 2400 6675 50  0001 C CNN
+F 0 "#PS0126" H 2400 6675 50  0001 C CNN
 F 1 "GND" H 2400 6725 50  0001 C CNN
 F 2 "" H 2400 6800 50  0001 C CNN
 F 3 "" H 2400 6800 50  0001 C CNN
@@ -1594,10 +1577,10 @@ Wire Wire Line
 Wire Wire Line
 	2400 6600 2750 6600
 $Comp
-L SensorDemo_power_supply:+3V3 #PS?
+L SensorDemo_power_supply:+3V3 #PS0127
 U 1 1 6064F95D
 P 3700 6350
-F 0 "#PS?" H 3700 6300 50  0001 C CNN
+F 0 "#PS0127" H 3700 6300 50  0001 C CNN
 F 1 "+3V3" H 3600 6450 50  0000 L CNN
 F 2 "" H 3705 6045 50  0001 C CNN
 F 3 "" H 3705 6045 50  0001 C CNN
@@ -1606,4 +1589,24 @@ F 3 "" H 3705 6045 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3700 6500 3700 6350
+$Comp
+L SensorDemo_discrete:PB_SMD K1
+U 1 1 60479CF2
+P 1400 3100
+F 0 "K1" H 1400 2835 50  0000 C CNN
+F 1 "PB_SMD" H 1400 2926 50  0000 C CNN
+F 2 "SensorDemo_pcb:Key_SMD" H 1400 2950 60  0001 C CNN
+F 3 "https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG/?qs=QtyuwXswaQiWhwgY68YTTw%3D%3D" H 1400 2950 60  0001 C CNN
+	1    1400 3100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1150 3150 1050 3150
+Wire Wire Line
+	1050 3150 1050 3400
+Wire Wire Line
+	1900 2950 1900 3050
+Connection ~ 1900 3050
+Wire Wire Line
+	1900 3050 2750 3050
 $EndSCHEMATC

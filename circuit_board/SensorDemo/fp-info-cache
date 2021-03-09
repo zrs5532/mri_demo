@@ -1,4 +1,4 @@
-293591946565831
+293515138338074
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -483,6 +483,13 @@ Key
 4
 3
 SensorDemo_pcb
+Key_SMD
+
+
+0
+4
+4
+SensorDemo_pcb
 L0603
 SMT capacitor, 0603
 
@@ -818,13 +825,6 @@ SOT-23-3
 0
 3
 3
-SensorDemo_pcb
-SOT-23-4
-
-
-0
-4
-4
 SensorDemo_pcb
 SOT-23-5
 
