@@ -1,4 +1,4 @@
-293705373675877
+296939157915182
 SensorDemo_pcb
 AC_SOCKET_GSP1_C14
 
@@ -223,6 +223,20 @@ ERNI-114711
 0
 8
 6
+SensorDemo_pcb
+FD_1MM_C
+
+
+0
+1
+1
+SensorDemo_pcb
+FD_1MM_R
+
+
+0
+1
+1
 SensorDemo_pcb
 HEADER_2
 
