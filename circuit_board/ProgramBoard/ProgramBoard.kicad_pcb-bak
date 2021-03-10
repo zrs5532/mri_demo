@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 31)
+    (drawings 32)
     (tracks 35)
     (zones 0)
     (modules 12)
@@ -641,13 +641,16 @@
     )
   )
 
+  (gr_text "PICkit 3" (at 117.475 99.695) (layer F.SilkS)
+    (effects (font (size 1.016 1.016) (thickness 0.1524)) (justify left))
+  )
   (gr_text "Univ of Louisville\nLARRI" (at 142.24 123.19 -90) (layer F.SilkS)
     (effects (font (size 1.016 1.016) (thickness 0.1524) italic) (justify right))
   )
   (gr_text TC2050-IDC-NL (at 92.075 106.68 270) (layer F.SilkS)
     (effects (font (size 1.016 1.016) (thickness 0.1524)))
   )
-  (gr_text "P3: PICkit 3V3\nP4: FT232X 5V\nP5: 5VDC" (at 104.775 102.235) (layer F.SilkS)
+  (gr_text "P3: PICkit 3V3\nP4: FT232X 5V\nP5: 5VDC" (at 104.775 103.505) (layer F.SilkS)
     (effects (font (size 1.016 1.016) (thickness 0.1524) italic) (justify left))
   )
   (gr_text "SparkFun FT231X Breakout" (at 111.76 124.46) (layer F.SilkS)

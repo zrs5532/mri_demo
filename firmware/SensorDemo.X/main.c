@@ -135,13 +135,13 @@ void ADC1Val() {
 }
 
 void compute(uint16_t inp) {
-    error = setpoint - inp;
-    dacVal = kp*error;
-//    if  (inp > 2073) {
-//        dacVal = kp*error;
-//    } else if (inp < 2021) {
-//        dacVal = kp*error;
-//    }
+//    error = setpoint - inp;
+//    dacVal = kp*error;
+    if  (inp > 2073) {
+        dacVal += 25;
+    } else if (inp < 2021) {
+        dacVal -= 25;
+    }
 }
 
 //void UART1_Receive_CallBack(void) {
@@ -173,7 +173,8 @@ char UART1_RX_NB(void) {
 void calibrate(void) {
     while (sensVal < 2021 || sensVal > 2073) {
         ADC1Val();
-        compute(sensVal << 4);
+        //uint16_t testVal = sensVal << 4;
+        compute(sensVal);
         CS1_SetLow();
         SPI2_Exchange16bit(dacVal);
         CS1_SetHigh();
