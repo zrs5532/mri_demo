@@ -56,21 +56,15 @@
                          Main application
  */
 
+// DAC & IN-AMP Variables
+uint16_t dacVal = 30; //32767
+uint16_t sensVal = 0;
 
-uint16_t dacVal = 32767; //32767
-uint16_t sensVal;
-uint16_t skinVal;
-
-uint16_t setpoint = 2047;
-int16_t error;
-float kp = 0.3;
-
-bool runSense;
-
+//Controller Variables
+bool runCalibrate;
 uint8_t cmd;
 
 void ADC1Val();
-void compute(uint16_t inp);
 void UART1_Receive_CallBack(void);
 char UART1_RX_NB(void);
 void calibrate(void);
@@ -80,14 +74,10 @@ int main(void)
     // initialize the device
     SYSTEM_Initialize();
     
+    //Configure ADC Registers
     AD1CON1bits.SSRCG = 0;
     AD1CON1bits.SSRC = 0b111;
     
-//    T2CON = 0x0000;
-//    T2CONbits.TCKPS = 0b10;
-//    T2CONbits.T32 = 1;
-    
-    sensVal = 1;
     
     printf("\n\r5 Second Delay to Settle\n\r");
     __delay_ms(5000);
@@ -99,6 +89,7 @@ int main(void)
     { 
         cmd = UART1_RX_NB();
         if (cmd == '1') {
+            runCalibrate = true;
             calibrate();
         }
      
@@ -134,16 +125,6 @@ void ADC1Val() {
     
 }
 
-void compute(uint16_t inp) {
-//    error = setpoint - inp;
-//    dacVal = kp*error;
-    if  (inp > 2073) {
-        dacVal += 25;
-    } else if (inp < 2021) {
-        dacVal -= 25;
-    }
-}
-
 //void UART1_Receive_CallBack(void) {
 //    __delay_us(10);
 //    cmd = (uint8_t)UART1_RX_NB();
@@ -171,10 +152,42 @@ char UART1_RX_NB(void) {
 }
 
 void calibrate(void) {
-    while (sensVal < 2021 || sensVal > 2073) {
+    while (runCalibrate) {
         ADC1Val();
-        //uint16_t testVal = sensVal << 4;
-        compute(sensVal);
+        
+        uint8_t accuracy;
+        //3072 < inp < 1024
+        if  (sensVal > 3072 || sensVal < 1024) {
+            accuracy = 1;
+        } else if (sensVal > 2025 || sensVal < 1999) {
+            accuracy = 2;
+        } else {
+            runCalibrate = false;
+        }
+        
+        switch(accuracy) {
+            case 1: 
+                if (sensVal > 3072) {
+                    dacVal += 200;
+                } else {
+                    dacVal -= 200;
+                }
+                break;
+            case 2:
+                if (sensVal > 2025) {
+                    dacVal *= 1.02;
+                } else {
+                    dacVal *= 0.98;
+                }
+        }
+        
+        //runCalibrate = false;
+        
+        
+        
+        
+        
+        
         CS1_SetLow();
         SPI2_Exchange16bit(dacVal);
         CS1_SetHigh();
@@ -183,11 +196,17 @@ void calibrate(void) {
     }
 }
 
-//void __attribute__((__interrupt__, no_auto_psv)) _T1Interrupt(void) {
-//    IFS0bits.T1IF = 0;
-//}
-//
 
+
+
+//while (sensVal < 2021 || sensVal > 2073) {
+//        ADC1Val();
+//        
+//        if  (inp > 2073) {
+//        dacVal += 25;
+//        } else if (inp < 2021) {
+//            dacVal -= 25;
+//        }
 /**
  End of File
 */
