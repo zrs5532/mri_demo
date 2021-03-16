@@ -68,6 +68,7 @@ void ADC1Val();
 void UART1_Receive_CallBack(void);
 char UART1_RX_NB(void);
 void calibrate(void);
+void SPI_transfer16(uint16_t input);
 
 int main(void)
 {
@@ -156,29 +157,56 @@ void calibrate(void) {
         ADC1Val();
         
         uint8_t accuracy;
+        uint8_t topBound;
+        
         //3072 < inp < 1024
-        if  (sensVal > 3072 || sensVal < 1024) {
+        if  (sensVal == 4095 || sensVal == 0) {
             accuracy = 1;
-        } else if (sensVal > 2025 || sensVal < 1999) {
+        } else if (sensVal > 3071 || sensVal < 1023) {
             accuracy = 2;
-        } else {
+        }else if (sensVal > 2560 || sensVal < 1536) {
+            accuracy = 3;
+        }else if (sensVal > 2052 || sensVal < 2042) {
+            accuracy = 4;
+//        }else if (sensVal > 2052 || sensVal < 2042) {
+//            accuracy = 4;
+        }else {
             runCalibrate = false;
         }
         
         switch(accuracy) {
             case 1: 
-                if (sensVal > 3072) {
+                if (sensVal == 4095) {
                     dacVal += 200;
                 } else {
                     dacVal -= 200;
                 }
+                printf("accuracy = 1 ");
                 break;
-            case 2:
-                if (sensVal > 2025) {
-                    dacVal *= 1.02;
+            case 2: 
+                if (sensVal > 3072) {
+                    dacVal += 50;
                 } else {
-                    dacVal *= 0.98;
+                    dacVal -= 50;
                 }
+                printf("accuracy = 2 ");
+                break;
+            case 3:
+                if (sensVal > 2560) {
+                    dacVal += 25;
+                } else {
+                    dacVal -= 25;
+                }
+                printf("accuracy = 3 ");
+                break;
+            case 4:
+                if (sensVal > 2052) {
+                    dacVal += 10;
+                } else {
+                    dacVal -= 10;
+                }
+                printf("accuracy = 4 ");
+                break;
         }
         
         //runCalibrate = false;
@@ -188,14 +216,17 @@ void calibrate(void) {
         
         
         
-        CS1_SetLow();
-        SPI2_Exchange16bit(dacVal);
-        CS1_SetHigh();
-        __delay_ms(10);
+        SPI_transfer16(dacVal);
         printf("Calibrating... %d\n\r", sensVal);
     }
 }
 
+void SPI_transfer16(uint16_t input) {
+    CS1_SetLow();
+    SPI2_Exchange16bit(input);
+    CS1_SetHigh();
+    __delay_ms(10);
+}
 
 
 
