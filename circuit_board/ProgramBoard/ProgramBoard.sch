@@ -20,7 +20,7 @@ P 6800 3500
 F 0 "U1" H 6800 4187 60  0000 C CNN
 F 1 "SparkFun_FT231X_Breakout" H 6800 4081 60  0000 C CNN
 F 2 "SensorDemo_pcb:SparkFun_FT231X_Breakout" H 6800 3650 60  0001 C CNN
-F 3 "https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector" H 6800 3650 60  0001 C CNN
+F 3 "https://www.sparkfun.com/products/13263" H 6800 3650 60  0001 C CNN
 	1    6800 3500
 	1    0    0    -1  
 $EndComp
