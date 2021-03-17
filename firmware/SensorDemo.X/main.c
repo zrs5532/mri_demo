@@ -57,12 +57,15 @@
  */
 
 // DAC & IN-AMP Variables
-uint16_t dacVal = 30; //32767
+uint16_t dacVal = 32767; //32767
 uint16_t sensVal = 0;
 
 //Controller Variables
 bool runCalibrate;
 uint8_t cmd;
+uint16_t lowBound = 2042;//2042;
+uint16_t upperBound = 2052;//2052;
+uint16_t val = 5000;
 
 void ADC1Val();
 void UART1_Receive_CallBack(void);
@@ -89,9 +92,10 @@ int main(void)
     while (1)
     { 
         cmd = UART1_RX_NB();
-        if (cmd == '1') {
+        if (cmd == '1' || sensVal == 4095 || sensVal == 0) {
             runCalibrate = true;
             calibrate();
+            val = 200;
         }
      
         ADC1Val();
@@ -154,69 +158,37 @@ char UART1_RX_NB(void) {
 
 void calibrate(void) {
     while (runCalibrate) {
-        ADC1Val();
+        uint8_t flag;
         
-        uint8_t accuracy;
-        uint8_t topBound;
-        
-        //3072 < inp < 1024
-        if  (sensVal == 4095 || sensVal == 0) {
-            accuracy = 1;
-        } else if (sensVal > 3071 || sensVal < 1023) {
-            accuracy = 2;
-        }else if (sensVal > 2560 || sensVal < 1536) {
-            accuracy = 3;
-        }else if (sensVal > 2052 || sensVal < 2042) {
-            accuracy = 4;
-//        }else if (sensVal > 2052 || sensVal < 2042) {
-//            accuracy = 4;
-        }else {
+        if(val == 0) {
             runCalibrate = false;
         }
         
-        switch(accuracy) {
-            case 1: 
-                if (sensVal == 4095) {
-                    dacVal += 200;
-                } else {
-                    dacVal -= 200;
-                }
-                printf("accuracy = 1 ");
-                break;
-            case 2: 
-                if (sensVal > 3072) {
-                    dacVal += 50;
-                } else {
-                    dacVal -= 50;
-                }
-                printf("accuracy = 2 ");
-                break;
-            case 3:
-                if (sensVal > 2560) {
-                    dacVal += 25;
-                } else {
-                    dacVal -= 25;
-                }
-                printf("accuracy = 3 ");
-                break;
-            case 4:
-                if (sensVal > 2052) {
-                    dacVal += 10;
-                } else {
-                    dacVal -= 10;
-                }
-                printf("accuracy = 4 ");
-                break;
+        ADC1Val();
+        if(dacVal < (sensVal*16)) {
+            dacVal += val;
+            flag = 0; //DAC IS BELOW ADC READING
+            //printf("ADDING %d\n\r", val);
+        } else if (dacVal > (sensVal*16)) {
+            dacVal -= val;
+            flag = 1; //DAC IS ABOVE ADC READING
+            //printf("SUBTRACTING %d\n\r", val);
         }
         
-        //runCalibrate = false;
+        uint16_t transferVal = dacVal >> 4;      
+        SPI_transfer16(transferVal << 4);
+        ADC1Val();
+        if((sensVal*16) > lowBound && (sensVal*16) < upperBound) {
+            runCalibrate = false; // BREAK WHILE LOOP
+        }
+        
+        if(dacVal < (sensVal*16) && flag == 1) {
+            val = val * 0.5;
+        } else if (dacVal > (sensVal*16) && flag == 0) {
+            val = val * 0.5;
+        }
         
         
-        
-        
-        
-        
-        SPI_transfer16(dacVal);
         printf("Calibrating... %d\n\r", sensVal);
     }
 }
