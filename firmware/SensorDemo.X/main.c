@@ -57,14 +57,14 @@
  */
 
 // DAC & IN-AMP Variables
-uint16_t dacVal = 32767; //32767
+uint16_t dacVal = 2047; //2047
 uint16_t sensVal = 0;
 
 //Controller Variables
 bool runCalibrate;
 uint8_t cmd;
-uint16_t lowBound = 2042;//2042;
-uint16_t upperBound = 2052;//2052;
+uint16_t lowBound = 2037;//2042;
+uint16_t upperBound = 2057;//2052;
 uint16_t val = 5000;
 
 void ADC1Val();
@@ -87,36 +87,26 @@ int main(void)
     __delay_ms(5000);
     printf("Settling complete.\n\r");
     
+    runCalibrate = true;
+    calibrate();
+    val = 200;
+    
+    
     
     
     while (1)
     { 
         cmd = UART1_RX_NB();
-        if (cmd == '1' || sensVal == 4095 || sensVal == 0) {
+        if (cmd == '1') {
             runCalibrate = true;
             calibrate();
             val = 200;
         }
+        
+        
      
         ADC1Val();
         printf("Sens Val: %d\n\r", sensVal);
-            
-            
-//            switch(cmd) {
-//                case '1':
-//                    calibrate();
-//                    printf("Calibration Complete.\n\r");
-//                    printf("Sens Val: %d\n\r", sensVal);
-//                    break;
-//                case '2':
-//                    runSense = true;
-//                    while (runSense) {
-//                        ADC1Val();
-//                        printf("Sens Val: %d\n\r", sensVal);
-//                    }
-//                    break;
-//                }
-//            } 
         
     }
     return 1; 
@@ -129,23 +119,6 @@ void ADC1Val() {
     sensVal = ADC1BUF0;
     
 }
-
-//void UART1_Receive_CallBack(void) {
-//    __delay_us(10);
-//    cmd = (uint8_t)UART1_RX_NB();
-//    printf("%d", cmd);
-//    
-//    if(cmd == '1') {
-//        //printf("test\n\r");
-//        //calibrate();
-//        printf("test\n\r");
-//        
-//    }
-//    else if(cmd == '2') {
-//        //runSense = false;
-//        printf("runSense is false");
-//    }
-//}
 
 char UART1_RX_NB(void) {
     if(U1STAbits.URXDA == 1) {
@@ -160,35 +133,51 @@ void calibrate(void) {
     while (runCalibrate) {
         uint8_t flag;
         
-        if(val == 0) {
+        
+        ADC1Val();
+        printf("ADC VALUE BEFORE: %d\n\r", sensVal);
+        
+        if((sensVal <= 0) || (sensVal >= 4095)){
+            if(sensVal == 0) {
+                dacVal += val;
+                flag = 0; //DAC IS BELOW ADC READING
+                printf("adding %d\n\r", val);
+            } else if (sensVal == 4095) {
+                dacVal -= val;
+                flag = 1; //DAC IS ABOVE ADC READING
+                printf("subtracting %d\n\r", val);
+            }
+
+            ADC1Val();
+            
+            if((sensVal > lowBound) && (sensVal < upperBound)) {
+                runCalibrate = false; // BREAK WHILE LOOP
+                printf("WITHIN BOUNDS!!!\n\r");
+            } else if (val == 0) {
+                runCalibrate = false;
+                printf("val == 0!\n\r");
+            }
+
+            if((dacVal < sensVal) && (flag == 1)) {
+                val = (uint16_t)(val * 0.5) + 1;
+            } else if ((dacVal > sensVal) && (flag == 0)) {
+                val = (uint16_t)(val * 0.5) + 1;
+            }  
+        } else if((sensVal < lowBound) || (sensVal > upperBound)) {
+            printf("222222222222222222222222222222\n\r");
+            if(dacVal < sensVal) {
+                dacVal += 5;
+            } else if (dacVal > sensVal) {
+                dacVal -= 5;
+            }
+            
+            //add stuff here
+            
+        } else {
             runCalibrate = false;
         }
         
-        ADC1Val();
-        if(dacVal < (sensVal*16)) {
-            dacVal += val;
-            flag = 0; //DAC IS BELOW ADC READING
-            //printf("ADDING %d\n\r", val);
-        } else if (dacVal > (sensVal*16)) {
-            dacVal -= val;
-            flag = 1; //DAC IS ABOVE ADC READING
-            //printf("SUBTRACTING %d\n\r", val);
-        }
-        
-        uint16_t transferVal = dacVal >> 4;      
-        SPI_transfer16(transferVal << 4);
-        ADC1Val();
-        if((sensVal*16) > lowBound && (sensVal*16) < upperBound) {
-            runCalibrate = false; // BREAK WHILE LOOP
-        }
-        
-        if(dacVal < (sensVal*16) && flag == 1) {
-            val = val * 0.5;
-        } else if (dacVal > (sensVal*16) && flag == 0) {
-            val = val * 0.5;
-        }
-        
-        
+        SPI_transfer16(0b0000000000000000 | dacVal);
         printf("Calibrating... %d\n\r", sensVal);
     }
 }
@@ -197,19 +186,8 @@ void SPI_transfer16(uint16_t input) {
     CS1_SetLow();
     SPI2_Exchange16bit(input);
     CS1_SetHigh();
-    __delay_ms(10);
+    __delay_ms(1);
 }
-
-
-
-//while (sensVal < 2021 || sensVal > 2073) {
-//        ADC1Val();
-//        
-//        if  (inp > 2073) {
-//        dacVal += 25;
-//        } else if (inp < 2021) {
-//            dacVal -= 25;
-//        }
 /**
  End of File
 */
