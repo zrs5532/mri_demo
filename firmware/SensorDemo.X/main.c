@@ -51,6 +51,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libpic30.h>
+//#define DEBUG
 
 /*
                          Main application
@@ -61,27 +62,28 @@ uint16_t dacVal = 2047; //2047
 uint16_t sensVal = 0;
 
 //Controller Variables
+#define MAXBOUND (4095 - 805)
+#define MINBOUND (0 + 805)
+#define lowBound 2047 - 50 //2042;
+#define upperBound 2047 + 50//2052;
+
 bool runCalibrate;
 uint8_t cmd;
-uint16_t lowBound = 2037;//2042;
-uint16_t upperBound = 2057;//2052;
-uint16_t val = 5000;
+uint16_t dacIncrement = 1023;
+uint8_t flag;
+uint8_t flip;
 
-void ADC1Val();
-void UART1_Receive_CallBack(void);
-char UART1_RX_NB(void);
-void calibrate(void);
-void SPI_transfer16(uint16_t input);
+
+//Functions
+void ADC1Val(); //Reads ADC Value
+char UART1_RX_NB(void); //UART Receive Non-Blocking
+void calibrate(void); //Calibrates the sensor
+void SPI_transfer16(uint16_t input); //Sends data through SPI bus (16-bit)
 
 int main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    
-    //Configure ADC Registers
-    AD1CON1bits.SSRCG = 0;
-    AD1CON1bits.SSRC = 0b111;
-    
     
     printf("\n\r5 Second Delay to Settle\n\r");
     __delay_ms(5000);
@@ -89,10 +91,7 @@ int main(void)
     
     runCalibrate = true;
     calibrate();
-    val = 200;
-    
-    
-    
+    dacIncrement = 1023;
     
     while (1)
     { 
@@ -100,13 +99,13 @@ int main(void)
         if (cmd == '1') {
             runCalibrate = true;
             calibrate();
-            val = 200;
+            dacIncrement = 200;
         }
         
         
      
         ADC1Val();
-        printf("Sens Val: %d\n\r", sensVal);
+        printf("%u\n\r", sensVal);
         
     }
     return 1; 
@@ -131,44 +130,60 @@ char UART1_RX_NB(void) {
 
 void calibrate(void) {
     while (runCalibrate) {
-        uint8_t flag;
-        
-        
+        printf("====================================\n\r");
         ADC1Val();
         printf("ADC VALUE BEFORE: %d\n\r", sensVal);
+        printf("dacValue VALUE BEFORE: %u\n\r", dacVal);
         
-        if((sensVal <= 0) || (sensVal >= 4095)){
-            if(sensVal == 0) {
-                dacVal += val;
+        if((sensVal <= MINBOUND) || (sensVal >= MAXBOUND)){
+            if(sensVal <= MINBOUND) {
+                dacVal -= dacIncrement;
                 flag = 0; //DAC IS BELOW ADC READING
-                printf("adding %d\n\r", val);
-            } else if (sensVal == 4095) {
-                dacVal -= val;
+                printf("subtracting %u\n\r", dacIncrement);
+            } else if (sensVal >= MAXBOUND) {
+                dacVal += dacIncrement;
                 flag = 1; //DAC IS ABOVE ADC READING
-                printf("subtracting %d\n\r", val);
+                printf("adding %u\n\r", dacIncrement);
             }
 
+            SPI_transfer16(0b0000000000000000 | dacVal);
+            
             ADC1Val();
             
             if((sensVal > lowBound) && (sensVal < upperBound)) {
                 runCalibrate = false; // BREAK WHILE LOOP
                 printf("WITHIN BOUNDS!!!\n\r");
-            } else if (val == 0) {
+            } else if (dacIncrement == 0) {
                 runCalibrate = false;
-                printf("val == 0!\n\r");
+                printf("dacIncrement == 0!\n\r");
             }
 
-            if((dacVal < sensVal) && (flag == 1)) {
-                val = (uint16_t)(val * 0.5) + 1;
-            } else if ((dacVal > sensVal) && (flag == 0)) {
-                val = (uint16_t)(val * 0.5) + 1;
+            
+            uint16_t testVal = 0b0000000000000000 | dacVal;
+            printf("dacVal: %u\n\r", testVal);
+            
+            printf("ADC VALUE HALFWAY: %u\n\r", sensVal);
+            
+            
+            
+            if((sensVal <= MINBOUND) && (flag == 1)) {
+                dacIncrement = (uint16_t)(dacIncrement / 2) + 1;
+                printf("flipped!!\n\r");
+            } else if ((sensVal >= MAXBOUND) && (flag == 0)) {
+                dacIncrement = (uint16_t)(dacIncrement / 2) + 1;
+                printf("flipped!!\n\r");
             }  
-        } else if((sensVal < lowBound) || (sensVal > upperBound)) {
+            
+        } else if(((sensVal < lowBound) && (sensVal > MINBOUND)) || ((sensVal > upperBound) && (sensVal < MAXBOUND))) {
             printf("222222222222222222222222222222\n\r");
-            if(dacVal < sensVal) {
-                dacVal += 5;
-            } else if (dacVal > sensVal) {
-                dacVal -= 5;
+            if(sensVal < lowBound) {
+                dacVal -= 1;
+                printf("adding 1\n\r");
+                SPI_transfer16(0b0000000000000000 | dacVal);
+            } else if (sensVal > upperBound) {
+                dacVal += 1;
+                printf("subtracting 1\n\r");
+                SPI_transfer16(0b0000000000000000 | dacVal);
             }
             
             //add stuff here
@@ -177,8 +192,8 @@ void calibrate(void) {
             runCalibrate = false;
         }
         
-        SPI_transfer16(0b0000000000000000 | dacVal);
-        printf("Calibrating... %d\n\r", sensVal);
+        ADC1Val();
+        printf("ADC VALUE AFTER: %d\n\r", sensVal);
     }
 }
 

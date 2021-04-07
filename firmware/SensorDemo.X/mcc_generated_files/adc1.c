@@ -78,6 +78,10 @@ void ADC1_Initialize (void)
     // CH123SA disabled; CH123SB CH1=OA2/AN0,CH2=AN1,CH3=AN2; CH123NA disabled; CH123NB CH1=VREF-,CH2=VREF-,CH3=VREF-; 
     AD1CHS123 = 0x00;
     
+    //Configure ADC Registers
+    AD1CON1bits.SSRCG = 0;
+    AD1CON1bits.SSRC = 0b111;
+    
     //Assign Default Callbacks
     ADC1_SetInterruptHandler(&ADC1_CallBack);
    
